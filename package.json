@@ -1,0 +1,23 @@
+{
+  "name": "gulu",
+  "version": "0.0.1",
+  "description": "这是一个UI框架",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lz916/vue-gulu.git"
+  },
+  "keywords": [
+    "扶vue",
+    "ui"
+  ],
+  "author": "liaozhen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lz916/vue-gulu/issues"
+  },
+  "homepage": "https://github.com/lz916/vue-gulu#readme"
+}
