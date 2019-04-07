@@ -1,6 +1,7 @@
 <template>
     <button :class="buttonClasses"
-            :disabled="disabled">
+            :disabled="disabled"
+            @click="click">
         <g-icon class="icon-loading"
                 icon-name="loading"
                 v-if="loading"></g-icon>
@@ -58,6 +59,11 @@
                 default: false
             },
             disabled: Boolean
+        },
+        methods: {
+            click() {
+                this.$emit('click')
+            }
         }
     }
 </script>
