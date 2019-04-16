@@ -32,13 +32,9 @@ const expect = chai.expect
         }
     })
     vm.$mount(div)
-    console.log(vm.$el.classList)
-    console.log(typeof vm.$el.className)
     const classNames = vm.$el.className.split(' ')
-    console.log(classNames)
     const use = vm.$el.querySelector('use')
     const svg = vm.$el.querySelector('svg')
-    console.log(svg.className)
     expect(classNames.indexOf('g-button-primary')).to.equal(1)
     expect(svg.className.baseVal.split(' ').indexOf('icon-loading')).to.equal(1)
     expect(use.getAttribute('xlink:href')).to.equal('#i-loading')
