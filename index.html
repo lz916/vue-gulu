@@ -22,51 +22,51 @@
             --button-small-height: 24px;
             --button-small-padding: 0 .5em;
         }
+        .input-wrap {
+            /* display: inline-block; */
+            width: 300px;
+            margin: 10px;
+        }
     </style>
 
 </head>
 <body>
     <div id="app">
-        <div>
-            <g-button @click="test">default</g-button>
-            <g-button type="primary">primary</g-button>
-            <g-button type="danger">danger</g-button>
+        <div class="input-wrap">
+            <g-input placeholder="large size" size="large"></g-input>
         </div>
-        <div>
-            <g-button size="small">small</g-button>
-            <g-button size="large" type="primary">large</g-button>
+        <div class="input-wrap">
+            <g-input placeholder="defalut size"></g-input>
         </div>
-        <div>
-            <g-button type="primary" :disabled="true">primary(disabled)</g-button>
+        <div class="input-wrap">
+            <g-input placeholder="small size" size="small"></g-input>
         </div>
-        <div>
-            <!--<g-button-group>-->
-                <g-button type="primary" icon-position="left" icon="left">backward</g-button>
-                <g-button type="primary" icon-position="right" icon="right">forward</g-button>
-            <!--</g-button-group>-->
+        <div class="input-wrap">
+            <g-input placeholder="large size" size="large">
+                <template slot="prepend">https://</template>
+                <template slot="append">.com</template>
+            </g-input>
         </div>
-        <div>
-            <g-button-group>
-                <g-button type="primary" icon-position="left" icon="left">backward</g-button>
-                <g-button type="primary" icon-position="right" icon="right">forward</g-button>
-            </g-button-group>
+        <div class="input-wrap">
+            <g-input size="large" 
+                     suffix-icon="riqi"
+                     placeholder="请选择日期">
+            </g-input>
         </div>
-        <div>
-            <g-button-group>
-                <g-button>small</g-button>
-                <g-button>default</g-button>
-                <g-button>large</g-button>
-            </g-button-group>
+        <div class="input-wrap">
+            <g-input size="large" 
+                     prefix-icon="search"
+                     placeholder="请输入内容">
+            </g-input>
         </div>
-        <div>
-            <g-button-group>
-                <g-button type="danger">small</g-button>
-                <g-button type="danger">default</g-button>
-                <g-button type="danger">large</g-button>
-            </g-button-group>
+        <div class="input-wrap">
+            <g-input size="large"
+                     placeholder="这是禁用状态"
+                     disabled>
+            </g-input>
         </div>
     </div>
     <script src="./src/app.js"></script>
-    <script src="//at.alicdn.com/t/font_894966_k26ih1xzar.js"></script>
+    <script src="//at.alicdn.com/t/font_894966_ad19strfrzj.js"></script>
 </body>
 </html>
