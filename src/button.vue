@@ -69,6 +69,7 @@
 </script>
 
 <style lang="scss">
+    @import './var';
     @keyframes loading {
         0% {
             transform: rotate(0deg);
