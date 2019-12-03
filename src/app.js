@@ -7,6 +7,7 @@ Vue.component('gButton', Button)
 Vue.component('gButtonGroup', ButtonGroup)
 Vue.component('gInput',Input)
 Vue.component('gCascader', Cascader)
+import db from './db.js'
 new Vue({
     el: '#app',
     data() {
@@ -45,12 +46,16 @@ new Vue({
                         }
                     ]
                 }
-            ]
+            ],
+            selected: []
         }
     },
     methods: {
         test() {
             console.log(1)
+        },
+        onUpdateSelected(newSelected) {
+            this.selected = newSelected
         }
     }
 })
