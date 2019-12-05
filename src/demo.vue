@@ -2,11 +2,15 @@
     <div>
         <g-button type="primary">按钮</g-button>
         <g-row :gutter="20">
-            <g-col :span="5">12</g-col>
-            <g-col :span="5">34</g-col>
-            <g-col :span="8">56</g-col>
-            <g-col :span="6">78</g-col>
+            <g-col :span="4" :iphone="{span: 12}">12</g-col>
+            <g-col :span="20" :iphone="{span: 12}">34</g-col>
         </g-row>
+        <!-- <g-row>
+            <g-col>12</g-col>
+            <g-col>34</g-col>
+            <g-col>56</g-col>
+            <g-col>78</g-col>
+        </g-row> -->
     </div>
 </template>
 
