@@ -1,9 +1,14 @@
 <template>
     <div>
         <g-button type="primary">按钮</g-button>
-        <g-row :gutter="20">
-            <g-col :span="4" :iphone="{span: 12}">12</g-col>
-            <g-col :span="20" :iphone="{span: 12}">34</g-col>
+        <g-row>
+          <g-col :span="4" :ipad="8" :narrow-pc="{span: 2, offset: 2}" :pc="10" :wide-pc="12">
+              <div class="col-wrap"></div>
+          </g-col>
+          <g-col :span="20" :ipad="16" :narrow-pc="{span: 18, offset: 2}" :pc="{span: 12, offset: 2}" :wide-pc="{span: 12}">
+            <div class="col-wrap1"></div>
+          </g-col>
+           
         </g-row>
         <!-- <g-row>
             <g-col>12</g-col>
@@ -39,5 +44,17 @@ export default {
   --button-danger-bg: #f5222d;
   --button-small-height: 24px;
   --button-small-padding: 0 0.5em;
+}
+.col-wrap {
+  color: #fff;
+  height: 40px;
+  background-color: #40a9ff;
+  border-radius: 5px;
+}
+.col-wrap1 {
+  color: #fff;
+  height: 40px;
+  background-color: #a2cdf1;
+  border-radius: 5px;
 }
 </style>
