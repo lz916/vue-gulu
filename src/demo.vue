@@ -10,6 +10,7 @@
           </g-col>
            
         </g-row>
+        <button @click="showToast">点我</button>
         <!-- <g-row>
             <g-col>12</g-col>
             <g-col>34</g-col>
@@ -20,11 +21,28 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import GButton from "./button";
+import toast from './plugin.js'
+Vue.use(toast)
 export default {
   name: "Demo",
   components: {
     GButton
+  },
+  methods: {
+    showToast() {
+      this.$toast(12333, {
+        isAutoClose: false,
+        closeButton: {
+          text: '我知道了',
+          callback: () => {
+            console.log(111111)
+          }
+        }
+      })
+     
+    }
   }
 };
 </script>
