@@ -32,14 +32,16 @@ export default {
   },
   methods: {
     showToast() {
-      this.$toast(12333, {
+      this.$toast('<strong>123</strong><p>我是段落我是段落我是段落我是段落我是段落我是段落我是段落我是段落我是段落我是段落</p>', {
         isAutoClose: false,
         closeButton: {
           text: '我知道了',
           callback: () => {
             console.log(111111)
           }
-        }
+        },
+        enableHtml: true,
+        position: 'top'
       })
      
     }
