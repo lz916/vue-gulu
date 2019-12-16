@@ -41,7 +41,7 @@ export default {
           }
         },
         enableHtml: true,
-        position: 'top'
+        position: 'bottom'
       })
      
     }
