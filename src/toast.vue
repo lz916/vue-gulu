@@ -1,6 +1,6 @@
 <template>
-    <div class="g-toast-wrapper" :class="toastClass">
-        <div class="g-toast-content" ref="toast">
+    <div class="g-toast" ref="toast" :class="toastClass">
+        <div class="toast-wrapper">
             <div class="message">
                 <div v-if="enableHtml" v-html="$slots.default[0]"></div>
                 <slot v-else></slot>
@@ -89,37 +89,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .g-toast-wrapper {
-        position: fixed;
-        left: 50%;
-        transform: translateX(-50%);
+    .g-toast {
+        padding: 0 10px;
+        background: rgba(0, 0, 0, .7);
+        color: #fff;
+        font-size: 14px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
         &.position-top {
+            position: fixed;
             top: 10px;
-            .g-toast-content {
-                animation: slide-down 1s ease;
-            }
+            left: 50%;
+            transform: translateX(-50%);
+            animation: slide-up 1s ease;
         }
         &.position-middle {
+            position: fixed;
             top: 50%;
-            transform: translate(-50%, -50%);
-            .g-toast-content {
-                animation: fade 1s ease;
-            }
+            left: 50%;
+            transform: translate(-50%, -50%)
         }
         &.position-bottom {
+            position: fixed;
             bottom: 10px;
-           .g-toast-content {
-                animation: slide-up 1s ease;
-            }
-        }
-        .g-toast-content {
-            padding: 0 10px;
-            background: rgba(0, 0, 0, .7);
-            color: #fff;
-            font-size: 14px;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
+            left: 50%;
+            transform: translateX(-50%)
         }
         .message {
             padding: 10px 0;
@@ -134,16 +129,6 @@ export default {
             flex-shrink: 0
         }
     }
-    @keyframes slide-down {
-        0% {
-            opacity: 0;
-            transform: translateY(-100%)
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0)
-        }
-    }
     @keyframes slide-up {
         0% {
             opacity: 0;
@@ -152,14 +137,6 @@ export default {
         100% {
             opacity: 1;
             transform: translateY(0)
-        }
-    }
-    @keyframes fade {
-        0% {
-            opacity: 0;  
-        }
-        100% {
-            opacity: 1;
         }
     }
 </style>
