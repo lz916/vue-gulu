@@ -1,5 +1,5 @@
 <template>
-    <div class="g-tab-item" @click="changeActiveName" :class="{'active': this.isActive}">
+    <div @click="changeActiveName" :class="classes">
         <slot></slot>
     </div>
 </template>
@@ -21,28 +21,48 @@ export default {
     inject: ['eventBus'],
     created() {
         this.eventBus.$on('update:activeName', name => {
-            console.log(name)
             this.isActive = name === this.name
         })
     },
+    computed: {
+        classes() {
+            return [
+                'g-tab-item',
+                { 'active': this.isActive },
+                { [`g-tab-item-${this.direction}`]: true }
+            ]
+        },
+        direction() {
+            return this.$parent.direction
+        }
+    },
     methods: {
         changeActiveName() {
-            console.log(111)
-            this.eventBus.$emit('update:activeName', this.name)
+            this.eventBus.$emit('update:activeName', this.name, this)
         }
     }
 }
 </script>
 
-<style style="scss" scoped>
-    .g-tab-item {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        &.active {
-            color: red
-        }
+<style lang="scss" scoped>
+@import './var.scss';
+.g-tab-item {
+    // flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $text-color;
+   
+    cursor: pointer;
+    &.active {
+        color: $primary-color;
     }
+    &.g-tab-item-horizontal {
+        padding: 0 1em
+    }
+    &.g-tab-item-vertical {
+        padding: 1em 0;
+    } 
+}
 </style>
 

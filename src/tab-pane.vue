@@ -1,5 +1,5 @@
 <template>
-    <div class="g-tab-pane">
+    <div class="g-tab-pane" v-if="isActive">
         <slot></slot>
     </div>
 </template>
@@ -32,7 +32,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+    .g-tab-pane {
+        margin-left: 10px;
+    }
 </style>
 

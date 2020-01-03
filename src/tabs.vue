@@ -1,5 +1,5 @@
 <template>
-    <div class="g-tabs">
+    <div class="g-tabs" :class="classes">
         <slot></slot>
     </div>
 </template>
@@ -17,6 +17,23 @@ export default {
         activeName: {
             type: [Number, String],
             default: ''
+        },
+        direction: {
+            type: String,
+            default: 'vertical',
+            validator: (val) => {
+                if (['vertical', 'horizontal'].indexOf(val) > -1) {
+                    return true
+                }
+                return false
+            }
+        }
+    },
+    computed: {
+        classes() {
+            return {
+                [`g-tabs-${this.direction}`]: true
+            }
         }
     },
     provide() {
@@ -25,12 +42,30 @@ export default {
         }
     },
     mounted() {
-        this.eventBus.$emit('update:activeName', this.activeName)
+        if (this.$children.length === 0) {
+            console.error('tabs的子组件应该为tab-head和tab-body')
+        }
+        this.$children.forEach(vm => {
+            if (vm.$options.name === 'GTabHead') {
+                vm.$children.forEach(child => {
+                    if (child.name === this.activeName) {
+                        this.eventBus.$emit('update:activeName', this.activeName, child)
+                    }
+                })
+            }
+        })
     }
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+    .g-tabs {
+        &.g-tabs-vertical {
+            display: flex;
+            .g-tab-body {
+                flex: 1;
+            }
+        }
+    }
 </style>
 

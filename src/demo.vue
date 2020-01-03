@@ -67,7 +67,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 :root {
   --button-height: 32px;
   --font-size: 14px;
