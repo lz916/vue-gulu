@@ -11,19 +11,22 @@
            
         </g-row>
         <button @click="showToast">点我</button>
-
-        <g-tabs :activeName.sync="activeName">
-          <g-tab-head>
-            <g-tab-item name="first">新闻</g-tab-item>
-            <g-tab-item name="seconed">体育</g-tab-item>
-            <g-tab-item name="third">咨询</g-tab-item>
-          </g-tab-head>
-          <g-tab-body>
-            <g-tab-pane name="first">1222</g-tab-pane>
-            <g-tab-pane name="seconed">33333</g-tab-pane>
-            <g-tab-pane name="third">5555</g-tab-pane>
-          </g-tab-body>
-        </g-tabs>
+        <div>
+          <g-button type="primary" @click="change('horizontal')">水平</g-button>
+          <g-button type="primary" @click="change('vertical')">垂直</g-button>
+          <g-tabs :activeName.sync="activeName" :direction="direction">
+            <g-tab-head>
+              <g-tab-item name="first">新闻</g-tab-item>
+              <g-tab-item name="seconed">体育</g-tab-item>
+              <g-tab-item name="third">咨询</g-tab-item>
+            </g-tab-head>
+            <g-tab-body>
+              <g-tab-pane name="first">1222</g-tab-pane>
+              <g-tab-pane name="seconed">33333</g-tab-pane>
+              <g-tab-pane name="third">5555</g-tab-pane>
+            </g-tab-body>
+          </g-tabs>
+        </div>
         <!-- <g-row>
             <g-col>12</g-col>
             <g-col>34</g-col>
@@ -45,7 +48,8 @@ export default {
   },
   data() {
     return {
-      activeName: 'first'
+      activeName: 'first',
+      direction: 'horizontal'
     }
   },
   methods: {
@@ -61,7 +65,9 @@ export default {
         enableHtml: true,
         position: 'bottom'
       })
-     
+    },
+    change(direction) {
+      this.direction = direction
     }
   }
 };

@@ -9,27 +9,32 @@
 export default {
     name: 'GTabHead',
     inject: ['eventBus'],
-    props: {
-        direction: {
-            type: String,
-            default: 'vertical',
-            validator: val => {
-                if (['vertical', 'horizontal'].indexOf(val) > -1) {
-                    return true
-                }
-                return false
-            }
+    data() {
+        return {
+            // direction: 'horizontal'
+        }
+    },
+    computed: {
+        direction() {
+            return this.$parent.direction
         }
     },
     mounted() {
         this.eventBus.$on('update:activeName', (name, vm) => {
             const { width, left, top, height } = vm.$el.getBoundingClientRect()
-            this.$refs.line.style.width = `${width}px`
+            const parentElement = vm.$parent.$el
+            const parentLeft = parentElement.getBoundingClientRect().left
+            const parentTop = parentElement.getBoundingClientRect().top
             if (this.direction === 'horizontal') {
-                this.$refs.line.style.left = `${left}px`
+                this.$refs.line.style.width = `${width}px`
+                this.$refs.line.style.left = `${left - parentLeft}px`
+                this.$refs.line.style.top = `0px`
+                this.$refs.line.style.height = 'auto'
             } else if (this.direction === 'vertical') {
-                 this.$refs.line.style.top = `${top}px`
+                this.$refs.line.style.left = `0px`
+                 this.$refs.line.style.top = `${top - parentTop}px`
                  this.$refs.line.style.height = `${height}px`
+                 this.$refs.line.style.width = 'auto'
             }
         })
     }
@@ -44,7 +49,6 @@ $tab-head-height: 40px;
     position: relative;
     .line {
         position: absolute;
-        width: 100px;
         transition: all 0.5s;
     }
     &.g-tab-head-vertical {
