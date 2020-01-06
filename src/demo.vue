@@ -27,6 +27,12 @@
             </g-tab-body>
           </g-tabs>
         </div>
+        <div>
+          <g-popover>
+            <div slot="content">我是popover弹出的内容</div>
+            <g-button type="primary">按钮</g-button>
+          </g-popover>
+        </div>
         <!-- <g-row>
             <g-col>12</g-col>
             <g-col>34</g-col>
