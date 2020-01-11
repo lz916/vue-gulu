@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="margin: 30px">
         <g-button type="primary">按钮</g-button>
         <g-row>
           <g-col :span="4" :ipad="8" :narrow-pc="{span: 2, offset: 2}" :pc="10" :wide-pc="12">

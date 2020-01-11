@@ -1,12 +1,12 @@
 <template>
-   <div class="g-popover" ref="popover" @click="onClickPopover">
-       <div class="popover-content" v-if="visible" ref="popoverContent">
-           <slot name="content"></slot>
-       </div>
-       <div class="popover-trigger" ref="popoverTrigger">
-           <slot></slot>
-       </div> 
-   </div>
+    <div class="g-popover" ref="popover" @click="onClickPopover">
+        <div :class="classes" v-if="visible" ref="popoverContent">
+            <slot name="content"></slot>
+        </div>
+        <div class="popover-trigger" ref="popoverTrigger">
+            <slot></slot>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -17,11 +17,35 @@ export default {
             visible: false
         }
     },
+    props: {
+        position: {
+            type: String,
+            default: 'top',
+            validator: val => {
+                const positions = ['top', 'bottom', 'left', 'right']
+                if (positions.indexOf(val) > -1) {
+                    return true
+                }
+                return false
+            }
+        }
+    },
+    computed: {
+        classes() {
+            return ['popover-content', { [`position-${this.position}`]: true }]
+        }
+    },
     methods: {
         onClickDocument(e) {
             const { popoverContent, popoverTrigger, popover } = this.$refs
-            if (popover && (popover === e.target || popover.contains(e.target))) return
-            if (popoverContent && (popoverContent === e.target || popoverContent.contains(e.target))) return
+            if (popover && (popover === e.target || popover.contains(e.target)))
+                return
+            if (
+                popoverContent &&
+                (popoverContent === e.target ||
+                    popoverContent.contains(e.target))
+            )
+                return
             this.close()
         },
         close() {
@@ -48,49 +72,63 @@ export default {
         positionContent() {
             const { popoverContent, popoverTrigger, popover } = this.$refs
             document.body.appendChild(popoverContent)
-            const { left, top, height, width } = popoverTrigger.getBoundingClientRect()
-            console.log(top)
-            const { height: height2 } = popoverContent.getBoundingClientRect()
-            console.log(height - height2)
-            console.log(height)
-            console.log(height2)
-            this.$refs.popoverContent.style.left = `${left + window.scrollX}px`
-            this.$refs.popoverContent.style.top = `${top + window.scrollY - height2 - 20}px`
-
+            const {
+                left,
+                top,
+                height,
+                width
+            } = popoverTrigger.getBoundingClientRect()
+            if (this.position === 'top') {
+                popoverContent.style.left = `${left + window.scrollX}px`
+                popoverContent.style.top = `${top + window.scrollY}px`
+            } else if (this.position === 'bottom') {
+                popoverContent.style.left = `${left + window.scrollX}px`
+                popoverContent.style.top = `${top + window.scrollY + height}px`
+            }
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-    @import './var.scss';
-    .g-popover {
-        display: inline-block;
-    }
-    .popover-content {
+@import './var.scss';
+.g-popover {
+    display: inline-block;
+}
+.popover-content {
+    position: absolute;
+    padding: 1em 0.5em;
+    border-radius: $border-radius-base;
+    // border: 1px solid $border-color-base;
+    background: #fff;
+    color: $text-color;
+    box-shadow: $box-shadow-base;
+    &::before,
+    &::after {
         position: absolute;
-        padding: 1em 0.5em;
-        border-radius: $border-radius-base;
-        // border: 1px solid $border-color-base;
-        background: #fff;
-        color: $text-color;
-        box-shadow: $box-shadow-base;
-        &:before {
-            position: absolute;
-            content: "";
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border: 10px solid transparent;
+    }
+    &.position-top {
+        transform: translateY(-100%);
+        margin-top: -10px;
+        &::before {
             left: 10px;
-            bottom: 0;
+            top: 100%;
+            border-top-color: $border-color-base;
+        }
+        &::after {
+            left: 10px;
+            top: calc(100% - 1px);
             display: block;
-            width: 12px;
-            border: 6px solid transparent;
-            border-left-color: #fff;
             border-top-color: #fff;
-            box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.07);
-            // box-shadow: $box-shadow-base;
-            transform: rotate(-45deg);
         }
     }
-    .popover-trigger {
-        display: inline-block;
-    }
+}
+.popover-trigger {
+    display: inline-block;
+}
 </style>
