@@ -89,7 +89,7 @@
         transition: all 0.3s;
         display: inline-flex;
         margin-right: 8px;
-        margin-bottom: 12px;
+        // margin-bottom: 12px;
         align-items: center;
         vertical-align: middle;
         &[disabled], &.g-button-primary[disabled], &.g-button-danger[disabled] {

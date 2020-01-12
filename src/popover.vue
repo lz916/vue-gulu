@@ -84,6 +84,16 @@ export default {
             } else if (this.position === 'bottom') {
                 popoverContent.style.left = `${left + window.scrollX}px`
                 popoverContent.style.top = `${top + window.scrollY + height}px`
+            } else if (this.position === 'left') {
+                popoverContent.style.left = `${left + window.scrollX}px`
+                popoverContent.style.top = `${top +
+                    window.scrollY -
+                    height / 2}px`
+            } else if (this.position === 'right') {
+                popoverContent.style.left = `${left + window.scrollX + width}px`
+                popoverContent.style.top = `${top +
+                    window.scrollY -
+                    height / 2}px`
             }
         }
     }
@@ -125,6 +135,54 @@ export default {
             top: calc(100% - 1px);
             display: block;
             border-top-color: #fff;
+        }
+    }
+    &.position-bottom {
+        margin-top: 10px;
+        &::before {
+            left: 10px;
+            bottom: 100%;
+            border-bottom-color: $border-color-base;
+        }
+        &::after {
+            left: 10px;
+            bottom: calc(100% - 1px);
+            display: block;
+            border-bottom-color: #fff;
+        }
+    }
+    &.position-left {
+        transform: translateX(-100%);
+        margin-left: -10px;
+        &::before {
+            top: 50%;
+            transform: translateY(-50%);
+            left: 100%;
+            border-left-color: $border-color-base;
+        }
+        &::after {
+            top: 50%;
+            transform: translateY(-50%);
+            left: calc(100% - 1px);
+            display: block;
+            border-left-color: #fff;
+        }
+    }
+    &.position-right {
+        // transform: translateX(100%);
+        margin-right: 10px;
+        &::before {
+            top: 50%;
+            transform: translateY(-50%);
+            right: 100%;
+            border-right-color: $border-color-base;
+        }
+        &::after {
+            top: 50%;
+            transform: translateY(-50%);
+            right: calc(100% - 1px);
+            display: block;
+            border-right-color: #fff;
         }
     }
 }
