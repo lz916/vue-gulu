@@ -1,12 +1,6 @@
 import Vue from 'vue'
-import Button from './button'
-import ButtonGroup from './buttonGroup'
-import Input from './input'
-import Cascader from './cascader.vue'
-Vue.component('gButton', Button)
-Vue.component('gButtonGroup', ButtonGroup)
-Vue.component('gInput',Input)
-Vue.component('gCascader', Cascader)
+
+
 import db from './db.js'
 new Vue({
     el: '#app',

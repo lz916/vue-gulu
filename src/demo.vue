@@ -60,7 +60,7 @@
             </g-popover>
         </div>
         <div style="margin-top: 20px;">
-           <g-popover trigger="hover">
+            <g-popover trigger="hover">
                 <div slot="content">我是popover弹出的内容</div>
                 <g-button type="primary">popover向上按钮</g-button>
             </g-popover>
@@ -77,6 +77,23 @@
                 <g-button type="primary">popover向右按钮</g-button>
             </g-popover>
         </div>
+        <div style="margin-top: 20px">
+            <!-- collapse功能 -->
+            <g-collapse>
+                <g-collapse-item title="collapse1" name="1">
+                    <div> collapse功能 collapse功能 collapse功能 collapse功能 collapse功能</div>
+                </g-collapse-item>
+                <g-collapse-item title="collapse2" name="2">
+                    <div> collapse功能 collapse功能 collapse功能 collapse功能 collapse功能</div>
+                </g-collapse-item>
+                <g-collapse-item title="collapse3" name="3">
+                    <div> collapse功能 collapse功能 collapse功能 collapse功能 collapse功能</div>
+                </g-collapse-item>
+                <g-collapse-item title="collapse4" name="4">
+                    <div> collapse功能 collapse功能 collapse功能 collapse功能 collapse功能</div>
+                </g-collapse-item>
+            </g-collapse>
+        </div>
         <!-- <g-row>
             <g-col>12</g-col>
             <g-col>34</g-col>
@@ -87,71 +104,71 @@
 </template>
 
 <script>
-import Vue from "vue";
-import GButton from "./button";
-import toast from "./plugin.js";
-Vue.use(toast);
+import Vue from 'vue'
+import GButton from './button'
+import toast from './plugin.js'
+Vue.use(toast)
 export default {
-  name: "Demo",
-  components: {
-    GButton
-  },
-  data() {
-    return {
-      activeName: "first",
-      direction: "horizontal"
-    };
-  },
-  methods: {
-    showToast() {
-      this.$toast(
-        "<strong>123</strong><p>我是段落我是段落我是段落我是段落我是段落我是段落我是段落我是段落我是段落我是段落</p>",
-        {
-          isAutoClose: false,
-          closeButton: {
-            text: "我知道了",
-            callback: () => {
-              console.log(111111);
-            }
-          },
-          enableHtml: true,
-          position: "bottom"
-        }
-      );
+    name: 'Demo',
+    components: {
+        GButton
     },
-    change(direction) {
-      this.direction = direction;
+    data() {
+        return {
+            activeName: 'first',
+            direction: 'horizontal'
+        }
+    },
+    methods: {
+        showToast() {
+            this.$toast(
+                '<strong>123</strong><p>我是段落我是段落我是段落我是段落我是段落我是段落我是段落我是段落我是段落我是段落</p>',
+                {
+                    isAutoClose: false,
+                    closeButton: {
+                        text: '我知道了',
+                        callback: () => {
+                            console.log(111111)
+                        }
+                    },
+                    enableHtml: true,
+                    position: 'bottom'
+                }
+            )
+        },
+        change(direction) {
+            this.direction = direction
+        }
     }
-  }
-};
+}
 </script>
 
 <style lang="scss">
 :root {
-  --button-height: 32px;
-  --font-size: 14px;
-  --button-bg: #fff;
-  --button-color: rgba(0, 0, 0, 0.65);
-  --button-border-color: #d9d9d9;
-  --border-radius: 4px;
-  --button-padding: 0 1em;
-  --button-hover-color: #40a9ff;
-  --button-hover-border-color: #40a9ff;
-  --button-primary-bg: #40a9ff;
-  --button-danger-bg: #f5222d;
-  --button-small-height: 24px;
-  --button-small-padding: 0 0.5em;
+    --button-height: 32px;
+    --font-size: 14px;
+    --button-bg: #fff;
+    --button-color: rgba(0, 0, 0, 0.65);
+    --button-border-color: #d9d9d9;
+    --border-radius: 4px;
+    --button-padding: 0 1em;
+    --button-hover-color: #40a9ff;
+    --button-hover-border-color: #40a9ff;
+    --button-primary-bg: #40a9ff;
+    --button-danger-bg: #f5222d;
+    --button-small-height: 24px;
+    --button-small-padding: 0 0.5em;
 }
 .col-wrap {
-  color: #fff;
-  height: 40px;
-  background-color: #40a9ff;
-  border-radius: 5px;
+    color: #fff;
+    height: 40px;
+    background-color: #40a9ff;
+    border-radius: 5px;
 }
 .col-wrap1 {
-  color: #fff;
-  height: 40px;
-  background-color: #a2cdf1;
-  border-radius: 5px;
+    color: #fff;
+    height: 40px;
+    background-color: #a2cdf1;
+    border-radius: 5px;
 }
 </style>
