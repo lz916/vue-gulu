@@ -5,8 +5,32 @@
 </template>
 
 <script>
+import Vue from 'vue'
 export default {
-    name: 'Collapse'
+    name: 'Collapse',
+    data() {
+        return {
+            eventBus: new Vue()
+        }
+    },
+    props: {
+        activeName: {
+            type: [String, Array]
+        },
+        isSingle: {
+            type: Boolean,
+            default: true
+        }
+    },
+    provide() {
+        return {
+            eventBus: this.eventBus
+        }
+    },
+    mounted() {
+        this.eventBus.$emit('update:activeName', this.activeName)
+    },
+    // mounted() {}
 }
 </script>
 

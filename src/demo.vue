@@ -79,7 +79,7 @@
         </div>
         <div style="margin-top: 20px">
             <!-- collapse功能 -->
-            <g-collapse>
+            <g-collapse :activeName.sync="activeName1">
                 <g-collapse-item title="collapse1" name="1">
                     <div> collapse功能 collapse功能 collapse功能 collapse功能 collapse功能</div>
                 </g-collapse-item>
@@ -116,7 +116,8 @@ export default {
     data() {
         return {
             activeName: 'first',
-            direction: 'horizontal'
+            direction: 'horizontal',
+            activeName1: ['1']
         }
     },
     methods: {
