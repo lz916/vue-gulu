@@ -15,11 +15,11 @@ export default {
     },
     props: {
         activeName: {
-            type: [String, Array]
+            type: Array
         },
         isSingle: {
             type: Boolean,
-            default: true
+            default: false
         }
     },
     provide() {
@@ -29,16 +29,45 @@ export default {
     },
     mounted() {
         this.eventBus.$emit('update:activeName', this.activeName)
+        this.addSelected()
+        this.removeSelected()
     },
+    methods: {
+        addSelected() {
+            this.eventBus.$on('addSelected', name => {
+                let activeNameCopy = JSON.parse(JSON.stringify(this.activeName))
+                if (this.isSingle) {
+                    activeNameCopy = [name]
+                } else {
+                    activeNameCopy.push(name)
+                }
+                this.eventBus.$emit('update:activeName', activeNameCopy)
+                this.$emit('update:activeName', activeNameCopy)
+            })
+        },
+        removeSelected() {
+            this.eventBus.$on('removeSelected', (name) => {
+                let activeNameCopy = JSON.parse(JSON.stringify(this.activeName))
+                if (this.isSingle) {
+                    activeNameCopy = []
+                } else {
+                    const index = activeNameCopy.indexOf(name)
+                    activeNameCopy.splice(index, 1)
+                }
+                this.eventBus.$emit('update:activeName', activeNameCopy)
+                this.$emit('update:activeName', activeNameCopy)
+            })
+        }
+    }
     // mounted() {}
 }
 </script>
 
 <style lang="scss" scoped>
-    @import './var.scss';
-    .g-collapse {
-        .g-collapse-item:last-child {
-            border-bottom: 1px solid $border-color-base;
-        }
+@import './var.scss';
+.g-collapse {
+    .g-collapse-item:last-child {
+        border-bottom: 1px solid $border-color-base;
     }
+}
 </style>

@@ -93,6 +93,7 @@
                     <div> collapse功能 collapse功能 collapse功能 collapse功能 collapse功能</div>
                 </g-collapse-item>
             </g-collapse>
+            {{this.activeName1}}
         </div>
         <!-- <g-row>
             <g-col>12</g-col>

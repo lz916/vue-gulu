@@ -23,21 +23,23 @@ export default {
     },
     data() {
         return {
-            isOpen: false
+            isOpen: false,
+            isSingle: false
         }
     },
     inject: ['eventBus'],
     mounted() {
-        this.eventBus.$on('update:activeName', (name) => {
-            if (this.$parent.isSingle) {
-                this.isOpen = name === this.name
-            }
+        this.eventBus.$on('update:activeName', (names) => {
+            this.isOpen = names.indexOf(this.name) > -1
         })
     },
     methods: {
         toggle() {
-            this.isOpen = !this.isOpen
-            this.eventBus.$emit('update:activeName', this.name)
+            if (this.isOpen) {
+                this.eventBus.$emit('removeSelected', this.name)
+            } else {
+                this.eventBus.$emit('addSelected', this.name)
+            }
         }
     }
 }
@@ -60,6 +62,7 @@ export default {
         }
         .collapse-item-content {
             padding-bottom: 1.5em;
+            transition: all .5s;
         }
     }
 </style>
