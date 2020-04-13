@@ -15,6 +15,9 @@ import TabPane from './tabs/tab-pane'
 import Popover from './popover/popover'
 import Collapse from './collapse/collapse'
 import CollapseItem from './collapse/collapse-item'
+import Nav from './nav/nav'
+import NavItem from './nav/nav-item'
+import SubNav from './nav/sub-nav'
 
 Vue.component('GIcon', Icon)
 Vue.component('GRow', Row)
@@ -31,6 +34,9 @@ Vue.component('GButton', Button)
 Vue.component('GButtonGroup', ButtonGroup)
 Vue.component('GInput',Input)
 Vue.component('GCascader', Cascader)
+Vue.component('GNav', Nav)
+Vue.component('GNavItem', NavItem)
+Vue.component('GSubNav', SubNav)
 
 Vue.config.productionTip = false
 

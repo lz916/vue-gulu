@@ -95,12 +95,23 @@
             </g-collapse>
             {{this.activeName1}}
         </div>
-        <!-- <g-row>
-            <g-col>12</g-col>
-            <g-col>34</g-col>
-            <g-col>56</g-col>
-            <g-col>78</g-col>
-        </g-row> -->
+        <div style="margin-top: 20px">
+            <g-nav :default-selected-keys.sync="navSelected">
+                <g-nav-item name="home">首页</g-nav-item>
+                <g-nav-item name="about">关于</g-nav-item>
+                <g-sub-nav>
+                    <template slot="title">联系方式</template>
+                    <g-nav-item name="qq">QQ</g-nav-item>
+                    <g-nav-item name="weixin">微信</g-nav-item>
+                    <g-sub-nav>
+                        <template slot="title">联系方式</template>
+                        <g-nav-item name="yd">移动</g-nav-item>
+                        <g-nav-item name="lt">联通</g-nav-item>
+                        <g-nav-item name="dx">移动</g-nav-item>
+                    </g-sub-nav>
+                </g-sub-nav>
+            </g-nav>
+        </div>
     </div>
 </template>
 
@@ -118,7 +129,8 @@ export default {
         return {
             activeName: 'first',
             direction: 'horizontal',
-            activeName1: ['1']
+            activeName1: ['1'],
+            navSelected: ['home']
         }
     },
     methods: {
