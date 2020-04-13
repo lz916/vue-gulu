@@ -1,6 +1,10 @@
 <template>
     <div style="margin: 30px">
         <g-button type="primary">按钮</g-button>
+        <g-button type="primary" icon="settings">设置</g-button>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#i-right"></use>
+        </svg>
         <g-row>
             <g-col
                 :span="4"
@@ -21,6 +25,10 @@
                 <div class="col-wrap1"></div>
             </g-col>
         </g-row>
+        <div class="input-wrap">
+            <g-input size="large" suffix-icon="riqi" placeholder="请选择日期">
+            </g-input>
+        </div>
         <button @click="showToast">点我</button>
         <div>
             <g-button type="primary" @click="change('horizontal')"
@@ -81,19 +89,31 @@
             <!-- collapse功能 -->
             <g-collapse :activeName.sync="activeName1">
                 <g-collapse-item title="collapse1" name="1">
-                    <div> collapse功能 collapse功能 collapse功能 collapse功能 collapse功能</div>
+                    <div>
+                        collapse功能 collapse功能 collapse功能 collapse功能
+                        collapse功能
+                    </div>
                 </g-collapse-item>
                 <g-collapse-item title="collapse2" name="2">
-                    <div> collapse功能 collapse功能 collapse功能 collapse功能 collapse功能</div>
+                    <div>
+                        collapse功能 collapse功能 collapse功能 collapse功能
+                        collapse功能
+                    </div>
                 </g-collapse-item>
                 <g-collapse-item title="collapse3" name="3">
-                    <div> collapse功能 collapse功能 collapse功能 collapse功能 collapse功能</div>
+                    <div>
+                        collapse功能 collapse功能 collapse功能 collapse功能
+                        collapse功能
+                    </div>
                 </g-collapse-item>
                 <g-collapse-item title="collapse4" name="4">
-                    <div> collapse功能 collapse功能 collapse功能 collapse功能 collapse功能</div>
+                    <div>
+                        collapse功能 collapse功能 collapse功能 collapse功能
+                        collapse功能
+                    </div>
                 </g-collapse-item>
             </g-collapse>
-            {{this.activeName1}}
+            {{ this.activeName1 }}
         </div>
         <div style="margin-top: 20px">
             <g-nav :default-selected-keys.sync="navSelected">

@@ -34,9 +34,10 @@ export default {
     @import '../var.scss';
     .g-nav-item {
         padding: 0.8em 2em;
+        color: $text-color-secondary;
         cursor: pointer;
         &.active {
-            color: $primary-color;
+            color: $text-color;
             position: relative;
             &::after {
                 content: '';
