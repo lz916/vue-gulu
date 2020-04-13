@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 
-import db from './db.js'
+import db from './tests/fixtures/db.js'
 new Vue({
     el: '#app',
     data() {

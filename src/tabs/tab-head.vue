@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './var.scss';
+@import '../var.scss';
 $tab-head-height: 40px;
 .g-tab-head {
     display: flex;

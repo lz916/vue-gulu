@@ -25,7 +25,7 @@
 </template>
 
 <script>
-    import gIcon from './icon.vue'
+    import gIcon from '../icon/icon.vue'
     export default {
         name: 'gInput',
         data() {

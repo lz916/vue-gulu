@@ -1,4 +1,4 @@
-import Toast from './toast.vue'
+import Toast from './toast/toast.vue'
 
 function createToast({Vue, message, propsData}) {
     let Constructor = Vue.extend(Toast)

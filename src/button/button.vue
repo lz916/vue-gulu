@@ -15,7 +15,7 @@
 </template>
 
 <script>
-    import gIcon from './icon'
+    import gIcon from '../icon/icon'
     export default {
         name: 'gButton',
         data() {
@@ -69,7 +69,7 @@
 </script>
 
 <style lang="scss">
-    @import './var';
+    @import '../var';
     @keyframes loading {
         0% {
             transform: rotate(0deg);

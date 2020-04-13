@@ -45,7 +45,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './var.scss';
+@import '../var.scss';
 .g-tab-item {
     // flex: 1;
     display: flex;

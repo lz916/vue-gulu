@@ -64,7 +64,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './var.scss';
+@import '../var.scss';
 .g-collapse {
     .g-collapse-item:last-child {
         border-bottom: 1px solid $border-color-base;

@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import gIcon from './icon';
+import gIcon from '../icon/icon';
 const cascaderItem = {
     name: 'cascaderItem',
     components: {
@@ -84,7 +84,7 @@ export default cascaderItem
 </script>
 
 <style lang="scss" scoped>
-    @import './var.scss';
+    @import '../var.scss';
     .cascader-item {
         background-color: #fff;
         display: flex;

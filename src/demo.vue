@@ -106,14 +106,14 @@
 
 <script>
 import Vue from 'vue'
-import GButton from './button'
+// import GButton from './button'
 import toast from './plugin.js'
 Vue.use(toast)
 export default {
     name: 'Demo',
-    components: {
-        GButton
-    },
+    // components: {
+    //     GButton
+    // },
     data() {
         return {
             activeName: 'first',
