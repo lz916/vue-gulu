@@ -1,5 +1,9 @@
 <template>
-    <div class="g-nav">
+    <div
+        class="g-nav"
+        :style="{ backgroundColor: backgroundColor }"
+        :class="{[`g-nav-${mode}`]: true}"
+    >
         <slot></slot>
     </div>
 </template>
@@ -9,7 +13,8 @@ export default {
     name: 'GNav',
     data() {
         return {
-            items: []
+            items: [],
+            namesPath: []
         }
     },
     provide() {
@@ -67,21 +72,24 @@ export default {
         },
         listenToChildren() {
             this.items.forEach(vm => {
-                vm.$on('add:item', (name) => {
-                    console.log(name)
+                vm.$on('add:item', name => {
                     if (this.multiple) {
                         if (this.defaultSelectedKeys.indexOf(name) < 0) {
-                            const copySelected = JSON.parse(JSON.stringify(this.defaultSelectedKeys))
+                            const copySelected = JSON.parse(
+                                JSON.stringify(this.defaultSelectedKeys)
+                            )
                             copySelected.push(name)
-                            this.$emit('update:defaultSelectedKeys', copySelected)
+                            this.$emit(
+                                'update:defaultSelectedKeys',
+                                copySelected
+                            )
                         }
                     } else {
-                        console.log([name])
                         this.$emit('update:defaultSelectedKeys', [name])
                     }
                 })
             })
-        },
+        }
     }
 }
 </script>
@@ -92,5 +100,14 @@ export default {
     display: flex;
     font-size: 14px;
     border-bottom: 1px solid $border-color-base;
+    padding: 0 4em;
+    &-vertical {
+        width: 200px;
+        flex-direction: column;
+        padding: 0;
+        .g-nav-item.active {
+            border-bottom: none;
+        }
+    }
 }
 </style>
