@@ -8,6 +8,7 @@
         :style="styleObj"
         @mouseenter="mouseenter($event)"
         @mouseleave="mouseleave"
+        v-click-outside="close"
     >
         <div class="g-sub-nav-label" @click="onClick">
             <slot name="title"></slot>
@@ -44,6 +45,7 @@
 </template>
 
 <script>
+import ClickOutside from '../directive/click-outside'
 import gIcon from '../icon/icon'
 export default {
     name: 'GSubNav',
@@ -52,6 +54,7 @@ export default {
             isOpen: false
         }
     },
+    directives: { ClickOutside },
     inject: ['root'],
     props: {
         name: [String, Number],
@@ -135,13 +138,19 @@ export default {
             el.style.height = 'auto'
         },
         mouseenter(el) {
-            this.open()
-            console.log(el)
+            if (this.root.mode === 'horizontal') {
+                this.open()
+                console.log(el.relatedTarget)
+            }
         },
         mouseleave(el) {
-           this.close()
-           console.log('mouseleave')
-           console.log(el)
+            if (el.relatedTarget && el.relatedTarget.contains(el.target)) {
+                return
+            } else {
+                this.close()
+            }
+            //    console.log('mouseleave')
+            //    console.log(el)
         }
     }
 }

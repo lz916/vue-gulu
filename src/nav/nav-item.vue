@@ -43,6 +43,9 @@ export default {
             this.$parent.updateNamePath && this.$parent.updateNamePath()
             this.$emit('add:item', this.name)
             this.checkIsInSubNav(e)
+            if (this.$parent.$options && this.$parent.$options.name && this.$parent.$options.name === 'GSubNav' && this.$parent.isOpen) {
+                this.$parent.isOpen = false
+            }
         },
         // 判断是不是在nav-item是不是在sub-nav里面
         checkIsInSubNav(e) {
