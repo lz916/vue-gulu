@@ -225,7 +225,7 @@ export default {
 <style lang="scss">
 :root {
     --button-height: 32px;
-    --font-size: 14px;
+    $font-size-base: 14px;
     --button-bg: #fff;
     --button-color: rgba(0, 0, 0, 0.65);
     --button-border-color: #d9d9d9;

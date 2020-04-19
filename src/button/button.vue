@@ -70,6 +70,10 @@
 
 <style lang="scss">
     @import '../var';
+    $button-height: 32px;
+    $button-padding: 0 1em;
+    $button-small-height: 24px;
+    $button-small-padding: 0 .5em;
     @keyframes loading {
         0% {
             transform: rotate(0deg);
@@ -79,12 +83,12 @@
         }
     }
     .g-button {
-        font-size: var(--font-size);
-        height: var(--button-height);
-        color: var(--button-color);
-        border: 1px solid var(--button-border-color);
-        border-radius: var(--border-radius);
-        padding: var(--button-padding);
+        font-size: $font-size-base;
+        height:  $button-height;
+        color: $primary-color;
+        border: 1px solid $primary-color;
+        border-radius: $border-radius-base;
+        padding: $button-padding;
         background-color: #fff;
         transition: all 0.3s;
         display: inline-flex;
@@ -93,7 +97,7 @@
         align-items: center;
         vertical-align: middle;
         &[disabled], &.g-button-primary[disabled], &.g-button-danger[disabled] {
-            color: var(--button-color);
+            color: $primary-color;
             background-color: #f5f5f5;
             border-color: #d9d9d9;
             text-shadow: none;
@@ -103,35 +107,35 @@
         }
         &:hover {
             cursor: pointer;
-            color: var(--button-hover-color);
-            border-color: var(--button-hover-border-color);
+            color: $primary-color;
+            border-color: $primary-color;
         }
         &:active {
             cursor: pointer;
-            color: var(--button-hover-color);
-            border-color: var(--button-hover-border-color);
+            color: $primary-color;
+            border-color: $primary-color;
             outline: 0;
             box-shadow: none;
         }
         &.g-button-primary {
-            background-color: var(--button-primary-bg);
+            background-color: $primary-color;
             color: #fff;
-            border-color: var(--button-primary-bg);
+            border-color: $primary-color;
             .icon {
                 fill: #fff;
             }
         }
         &.g-button-danger {
-            background-color: var(--button-danger-bg);
+            background-color: $error-color;
             color: #fff;
-            border-color: var(--button-danger-bg);
+            border-color: $error-color;
             .icon {
                 fill: #fff;
             }
         }
         &.g-button-small {
-            height: var(--button-small-height);
-            padding: var(--button-small-padding);
+            height: $button-small-height;
+            padding: $button-small-padding;
         }
         &.g-button-large {
             width: 100%;
