@@ -18,6 +18,7 @@ import CollapseItem from './collapse/collapse-item'
 import Nav from './nav/nav'
 import NavItem from './nav/nav-item'
 import SubNav from './nav/sub-nav'
+import Switch from './switch/switch.vue'
 
 Vue.component('GIcon', Icon)
 Vue.component('GRow', Row)
@@ -37,6 +38,7 @@ Vue.component('GCascader', Cascader)
 Vue.component('GNav', Nav)
 Vue.component('GNavItem', NavItem)
 Vue.component('GSubNav', SubNav)
+Vue.component('GSwitch', Switch)
 
 Vue.config.productionTip = false
 

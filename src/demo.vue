@@ -177,6 +177,15 @@
                 </g-sub-nav>
             </g-nav>
         </div>
+        <div style="margin-top: 20px">
+            <div>开关</div>
+            <g-switch :value.sync="switchValue"></g-switch>
+            <g-switch
+                :value.sync="switchValue"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
+            ></g-switch>
+        </div>
     </div>
 </template>
 
@@ -195,7 +204,8 @@ export default {
             activeName: 'first',
             direction: 'horizontal',
             activeName1: ['1'],
-            navSelected: ['home']
+            navSelected: ['home'],
+            switchValue: true
         }
     },
     methods: {
