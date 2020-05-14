@@ -73,9 +73,9 @@ export default {
         }
     },
     watch: {
-        value(val) {
-            this.localValue = val
-        }
+        // value(val) {
+        //     this.localValue = val
+        // }
     }
 }
 </script>

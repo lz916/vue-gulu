@@ -1,0 +1,38 @@
+.page-components {
+    p {
+        font-size: 14px;
+        color: #5e6d82;
+        line-height: 1.5em;
+    }
+
+    .component-content {
+        border: 1px solid #ebebeb;
+        border-radius: 3px;
+        transition: .2s;
+    }
+
+    .demo {
+        padding: 20px;
+    }
+
+    .meta {
+        background-color: #fafafa;
+        border-top: 1px solid #eaeefb;
+        overflow: hidden;
+        transition: height .2s;
+    }
+
+    .desc {
+        padding: 20px;
+        box-sizing: border-box;
+        border: 1px solid #ebebeb;
+        border-radius: 3px;
+        font-size: 14px;
+        line-height: 22px;
+        color: #666;
+        word-break: break-word;
+        margin: 10px;
+        background-color: #fff;
+    }
+
+}

@@ -1,13 +1,10 @@
----
-title: Nav导航菜单
----
-
-# Nav导航菜单
+# Nav 导航栏
 
 ## 顶栏
-
-<nav-horizontal></nav-horizontal>
-
-## 侧边栏
-
-<nav-vertical></nav-vertical>
+ <highlight-code lang="vue">
+    <template>
+      <div>
+        <p>我是vue</p>
+      </p>
+    </template>
+  </highlight-code>
