@@ -1,10 +1,22 @@
 # Nav 导航栏
 
 ## 顶栏
- <highlight-code lang="vue">
+
+ <common-demoCode>
+   <highlight-code slot="codeText" lang="vue">
     <template>
-      <div>
-        <p>我是vue</p>
-      </p>
+      <div>123</div>
+      <div>123</div>
+      <div>123</div>
+      <div>123</div>
+      <div>123</div>
+      <div>123</div>
+      <div>123</div>
+      <div>123</div>
+      <div>123</div>
+      <div>123</div>
+      <div>123</div>
     </template>
-  </highlight-code>
+    <style></style>
+   </highlight-code>
+  </common-demoCode>
