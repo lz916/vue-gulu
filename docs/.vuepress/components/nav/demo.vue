@@ -93,5 +93,8 @@
 </script>
 
 <style lang="scss">
-@import '../../styles/common.scss';
+p {
+    font-size: 10px !important
+}
+// @import '../../styles/common.scss';
 </style>

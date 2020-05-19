@@ -1,37 +1,36 @@
 <template>
-    <div class="demo-block" @mouseenter="tipTextVisible = true"
-                            @mouseleave="tipTextVisible = false">
+    <div
+        class="demo-block"
+        @mouseenter="tipTextVisible = true"
+        @mouseleave="tipTextVisible = false"
+    >
         <div class="source">
             <slot></slot>
+            <!-- <Content slot="source"/> -->
         </div>
         <transition>
-            <div ref="meta" class="meta">
+            <div ref="meta" class="meta" :style="metaStyleObj">
                 <!-- 描述 -->
                 <div v-if="description" class="desc">
-                    <slot name="desc"></slot>
+                    <div class="desc">{{ description }}</div>
                 </div>
                 <!-- 源代码 -->
                 <div class="highlight" ref="highlight">
-                    <span class="copy-code-btn" title="复制代码">
-                        <i class="css-icon icon-copy"></i>
-                    </span>
                     <slot name="codeText"></slot>
                 </div>
             </div>
         </transition>
         <div class="demo-block-control" @click="codeVisible = !codeVisible">
-            <i>123</i>
+            <g-icon icon-name="down"></g-icon>
             <span v-if="tipTextVisible">
-                {{ codeVisible ? '隐藏代码' : '隐藏代码' }}
+                {{ codeVisible ? '隐藏代码' : '显示代码' }}
             </span>
         </div>
     </div>
 </template>
 
 <script>
-let uid = 0
-
-// import ClipboardJS from 'clipboard';
+import gIcon from '../../../../src/icon/icon'
 export default {
     name: 'DemoPage',
     props: ['title', 'description'],
@@ -42,9 +41,20 @@ export default {
             metaHeight: 0
         }
     },
+    components: {
+        gIcon
+    },
     computed: {
         metaStyleObj() {
-            
+            if (!this.codeVisible) {
+                return {
+                    height: 0
+                }
+            } else {
+                return {
+                    height: `${this.metaHeight}px`
+                }
+            }
         }
     },
     mounted() {
@@ -52,7 +62,7 @@ export default {
     },
     methods: {
         computedCodeHeight() {
-            const { height } = this.$refs.highlight.getBoundingClientRect().height
+            const { height } = this.$refs.highlight.getBoundingClientRect()
             this.metaHeight = height
         }
     }
@@ -67,6 +77,24 @@ export default {
     transition: 0.2s;
     .source {
         padding: 24px;
+    }
+    pre {
+        background-color: transparent;
+    }
+    .hljs {
+        line-height: 1.8;
+        font-size: 12px;
+        padding: 18px 24px;
+        background-color: #fafafa;
+        border: 1px solid #eaeefb;
+        margin-bottom: 25px;
+        border-radius: 4px;
+        -webkit-font-smoothing: auto;
+        color: #3182bd;
+    }
+    .hljs-tag,
+    .hljs-name {
+        color: #3182bd !important;
     }
     .meta {
         background-color: #fafafa;
@@ -88,24 +116,6 @@ export default {
             background-color: #fff;
         }
         .highlight {
-            pre {
-                background-color: transparent;
-            }
-            .hljs {
-                line-height: 1.8;
-                font-size: 12px;
-                padding: 18px 24px;
-                background-color: #fafafa;
-                border: 1px solid #eaeefb;
-                margin-bottom: 25px;
-                border-radius: 4px;
-                -webkit-font-smoothing: auto;
-                color: #3182bd;
-            }
-            .hljs-tag,
-            .hljs-name {
-                color: #3182bd !important;
-            }
         }
     }
     .demo-block-control {

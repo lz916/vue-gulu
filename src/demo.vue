@@ -1,7 +1,7 @@
 <template>
     <div style="margin: 30px">
         <g-button type="primary">按钮</g-button>
-        <g-button type="primary" icon="settings">设置</g-button>
+        <g-button type="primary" icon="settings1">设置</g-button>
         <svg class="icon" aria-hidden="true">
             <use xlink:href="#i-right"></use>
         </svg>
@@ -186,6 +186,10 @@
                 inactive-color="#ff4949"
             ></g-switch>
         </div>
+        <test>
+            <div slot="header">我是头部</div>
+            <div slot="footer">我是底部</div>
+        </test>
     </div>
 </template>
 
@@ -193,6 +197,7 @@
 import Vue from 'vue'
 // import GButton from './button'
 import toast from './plugin.js'
+import test from './test'
 Vue.use(toast)
 export default {
     name: 'Demo',
@@ -207,6 +212,9 @@ export default {
             navSelected: ['home'],
             switchValue: true
         }
+    },
+    components: {
+        test
     },
     methods: {
         showToast() {

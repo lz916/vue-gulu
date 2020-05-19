@@ -7,7 +7,10 @@
 <script>
     export default {
         name: 'gIcon',
-        props: ['iconName']
+        props: ['iconName'],
+        mounted () {
+            import('./symbol')
+        }
     }
 </script>
 
