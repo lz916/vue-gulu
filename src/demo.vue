@@ -1,7 +1,7 @@
 <template>
     <div style="margin: 30px">
         <g-button type="primary">按钮</g-button>
-        <g-button type="primary" icon="settings1">设置</g-button>
+        <g-button type="primary" icon="settings">设置</g-button>
         <svg class="icon" aria-hidden="true">
             <use xlink:href="#i-right"></use>
         </svg>

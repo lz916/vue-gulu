@@ -1,8 +1,6 @@
 <template>
     <div>
-        <g-button disabled>普通按钮禁用</g-button>
-        <g-button disabled round>禁用按钮</g-button>
-        <g-button disabled circle>禁用</g-button>
+        <g-button type="primary" :loading="true">加载中</g-button>
     </div>
 </template>
 

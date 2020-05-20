@@ -11,8 +11,8 @@
         <transition>
             <div ref="meta" class="meta" :style="metaStyleObj">
                 <!-- 描述 -->
-                <div v-if="description" class="desc">
-                    <div class="desc">{{ description }}</div>
+                <div class="desc" ref="desc">
+                    <slot name="desc"></slot>
                 </div>
                 <!-- 源代码 -->
                 <div class="highlight" ref="highlight">
@@ -21,7 +21,7 @@
             </div>
         </transition>
         <div class="demo-block-control" @click="codeVisible = !codeVisible">
-            <g-icon icon-name="down"></g-icon>
+            <g-icon :icon-name="iconName"></g-icon>
             <span v-if="tipTextVisible">
                 {{ codeVisible ? '隐藏代码' : '显示代码' }}
             </span>
@@ -55,6 +55,9 @@ export default {
                     height: `${this.metaHeight}px`
                 }
             }
+        },
+        iconName() {
+            return this.codeVisible ? 'caret-top' : 'caret-bottom'
         }
     },
     mounted() {
@@ -63,7 +66,7 @@ export default {
     methods: {
         computedCodeHeight() {
             const { height } = this.$refs.highlight.getBoundingClientRect()
-            this.metaHeight = height
+            this.metaHeight = height + this.$refs.desc.getBoundingClientRect().height + 40
         }
     }
 }
@@ -123,6 +126,9 @@ export default {
         height: 44px;
         box-sizing: border-box;
         background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border-bottom-left-radius: 4px;
         border-bottom-right-radius: 4px;
         text-align: center;
@@ -130,10 +136,13 @@ export default {
         color: #d3dce6;
         cursor: pointer;
         position: relative;
-        line-height: 44px;
         font-size: 14px;
         &:hover {
             color: $primary-color;
+        }
+        .icon {
+            fill: #d3dce6;
+            font-size: 1.5em;
         }
     }
 }

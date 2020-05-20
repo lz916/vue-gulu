@@ -29,7 +29,8 @@ export default {
                 { [`g-button-${this.type}`]: this.type },
                 { [`g-button-${this.size}`]: this.size },
                 { ['is-circle']: this.circle },
-                { ['is-round']: this.round},
+                { ['is-round']: this.round },
+                { ['is-loading']: this.loading },
                 { ['is-disabled']: this.disabled },
                 { [`icon-${this.iconPosition}`]: this.iconPosition }
             ]
@@ -81,8 +82,9 @@ $button-height: 32px;
 $button-padding: 0 1em;
 $button-small-height: 24px;
 $button-small-padding: 0 0.5em;
+$button-large-height: 44px;
 $button-defalut-text-color: #606266;
-$button-default-border-color: #dcdfe6; 
+$button-default-border-color: #dcdfe6;
 $button-primary-hover-color: #40a9ff;
 $button-danger-hover-color: #ff7875;
 $button-disabled-text-color: #c0c4cc;
@@ -150,12 +152,13 @@ $buttom-border-radius-round: 2rem;
             fill: #fff;
         }
     }
-    &.-small {
+    &-small {
         height: $button-small-height;
         padding: $button-small-padding;
     }
-    &.-large {
+    &-large {
         width: 100%;
+        height:$button-large-height;
         .content {
             width: 100%;
             text-align: center;
@@ -181,9 +184,18 @@ $buttom-border-radius-round: 2rem;
     }
     &.is-circle {
         border-radius: 50%;
+        padding: 1em;
+        height: auto;
+        width: auto;
     }
     &.is-round {
         border-radius: $buttom-border-radius-round;
+    }
+    &.is-loading {
+        pointer-events: none;
+        .icon {
+            margin-right: 6px;
+        }
     }
     .icon {
         line-height: 1;
