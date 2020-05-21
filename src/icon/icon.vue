@@ -10,9 +10,6 @@ export default {
     name: 'gIcon',
     props: ['iconName'],
     mounted() {
-        // console.log(12333)
-        const test = import('./symbol')
-        console.log(test)
         import('./symbol.js')
     }
 }

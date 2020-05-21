@@ -23,11 +23,11 @@
 
 <script>
 import Button from '../../../../src/button/button'
-import icon from '../../../../src/icon/icon'
+import Icon from '../../../../src/icon/icon'
 export default {
     components: {
         gButton: Button,
-        gIcon: icon
+        gIcon: Icon
     }
 }
 </script>

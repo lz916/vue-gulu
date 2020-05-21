@@ -8,7 +8,7 @@ title: 按钮
 
 ### 基础用法
 
-<Common-Democode>
+<common-demoCode>
   <button-demo1 />
   <highlight-code slot="codeText" lang="vue">
     <template>
@@ -42,13 +42,13 @@ title: 按钮
   <div slot="desc">
     使用<code>type</code>、<code>round</code>和<code>circle</code>属性来定义 Button 的样式。
   </div>
-</Common-Democode>
+</common-demoCode>
 
 ### 禁用状态
 
 <p>按钮不可用状态。</p>
 
-<Common-Democode>
+<common-demoCode>
   <button-demo2 />
   <highlight-code slot="codeText" lang="vue">
     <template>
@@ -62,13 +62,13 @@ title: 按钮
   <div slot="desc">
     使用<code>type</code>、<code>round</code>和<code>circle</code>属性来定义 Button 的样式。
   </div>
-</Common-Democode>
+</common-demoCode>
 
 ### 加载中状态
 
 <p>要设置为 loading 状态，只要设置loading属性为true即可。</p>
 
-<Common-Democode>
+<common-demoCode>
   <button-demo3 />
   <highlight-code slot="codeText" lang="vue">
     <template>
@@ -77,13 +77,13 @@ title: 按钮
       </div>
     </template>
   </highlight-code>
-</Common-Democode>
+</common-demoCode>
 
 ### 不同尺寸
 
 <p>Button 组件提供除了默认值以外的两种尺寸，可以在不同场景下选择合适的按钮尺寸。</p>
 
-<Common-Democode>
+<common-demoCode>
   <button-demo4 />
   <highlight-code slot="codeText" lang="vue">
     <template>
@@ -97,11 +97,11 @@ title: 按钮
   <div slot="desc">
     使用<code>size</code>属性来定义 Button的大小。
   </div>
-</Common-Democode>
+</common-demoCode>
 
 ### 带图标按钮
 
-<Common-Democode>
+<common-demoCode>
   <button-demo5 />
   <highlight-code slot="codeText" lang="vue">
     <template>
@@ -113,13 +113,13 @@ title: 按钮
   <div slot="desc">
     使用<code>icon</code>属性来定义icon名称，<code>iconPosition</code>指定icon的位置。
   </div>
-</Common-Democode>
+</common-demoCode>
 
 ### 按钮组
 
 <p>以按钮组的方式出现，常用于多项类似操作。</p>
 
-<Common-Democode>
+<common-demoCode>
   <button-demo6 />
   <highlight-code slot="codeText" lang="vue">
     <template>
@@ -131,7 +131,7 @@ title: 按钮
   <div slot="desc">
     使用<code>g-button-group</code>嵌套按钮
   </div>
-</Common-Democode>
+</common-demoCode>
 
 ### API
 
