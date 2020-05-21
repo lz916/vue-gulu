@@ -17,6 +17,7 @@ module.exports = {
                 children: [
                   '/components/icon/',
                   '/components/button/',
+                  '/components/grid/',
                   '/components/nav/'
                 ]
               }
