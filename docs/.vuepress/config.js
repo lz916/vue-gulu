@@ -18,6 +18,7 @@ module.exports = {
                   '/components/icon/',
                   '/components/button/',
                   '/components/grid/',
+                  '/components/input/',
                   '/components/nav/'
                 ]
               }
