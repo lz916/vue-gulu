@@ -28,6 +28,7 @@
         <template v-else>
             <textarea
                 class="g-textarea-inner"
+                ref="textarea"
                 :type="type"
                 :placeholder="placeholder"
                 :value="value"
@@ -103,6 +104,13 @@ export default {
     },
     components: {
         gIcon
+    },
+    methods: {
+        calcTextareaHeight() {
+            const style = window.getComputedStyle(this.$refs.textarea)
+            console.log(style)
+            // const { height } = this.$ref.textarea.getB
+        }
     }
 }
 </script>
