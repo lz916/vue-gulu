@@ -11,6 +11,7 @@
             <input
                 class="g-input-inner"
                 :type="type"
+                ref="input"
                 :placeholder="placeholder"
                 :value="value"
                 :disabled="disabled"
@@ -20,7 +21,7 @@
                     { 'g-input-inner-disabled': disabled }
                 ]"
                 @change="$emit('change', $event)"
-                @input="$emit('change', $event)"
+                @input="handleInput"
                 @focus="$emit('focus', $event)"
                 @blur="$emit('blur', $event)"
             />
@@ -33,9 +34,10 @@
                 :placeholder="placeholder"
                 :value="value"
                 :disabled="disabled"
+                :style="textareaCalcStyle"
                 v-bind="$attrs"
-                @change="$emit('change', $event)"
-                @input="$emit('change', $event)"
+                @change="handleChange"
+                @input="handleInput"
                 @focus="$emit('focus', $event)"
                 @blur="$emit('blur', $event)"
             ></textarea>
@@ -52,10 +54,14 @@
 
 <script>
 import gIcon from '../icon/icon.vue'
+import calcTextareaHeight from './calcTextareaHeight'
+console.log(calcTextareaHeight)
 export default {
     name: 'gInput',
     data() {
-        return {}
+        return {
+           textareaCalcStyle: {}
+        }
     },
     computed: {
         classes() {
@@ -97,19 +103,44 @@ export default {
             type: Boolean,
             default: false
         },
-        
+        autosize: Object
     },
     mounted() {
-        console.log(this)
+        this.resizeTextarea()
     },
     components: {
         gIcon
     },
     methods: {
-        calcTextareaHeight() {
-            const style = window.getComputedStyle(this.$refs.textarea)
-            console.log(style)
-            // const { height } = this.$ref.textarea.getB
+        // textarea自适应高度
+        resizeTextarea() {
+            console.log('textarea')
+            if (this.type === 'textarea' && this.autosize) {
+                const minRows = this.autosize.minRows
+                const maxRows = this.autosize.maxRows
+                this.textareaCalcStyle = calcTextareaHeight(
+                    this.$refs.textarea,
+                    minRows,
+                    maxRows
+                )
+            }
+        },
+        handleChange($event) {
+            this.$emit('change', $event)
+            setTimeout(this.resizeTextarea, 1000)
+        },
+        handleInput($event) {
+            console.log($event)
+            this.$emit('input', $event)
+            // setTimeout(this.resizeTextarea, 1000)
+            
+            // this.$nextTick()
+        }
+    },
+    watch: {
+        value(newValue) {
+            console.log(newValue)
+            this.$nextTick(this.resizeTextarea)
         }
     }
 }

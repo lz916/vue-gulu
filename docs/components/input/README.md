@@ -103,6 +103,34 @@ title: input 输入框
 	<div slot="desc">通过<code>type</code>属性的值传入为textarea</div>
 </common-demoCode>
 
+### 自适应高度的文本域
+
+<common-demoCode>
+  <input-demo7 />
+  <highlight-code slot="codeText" lang="vue">
+		<template>
+			<div>
+				<g-input
+					placeholder="请输入内容"
+					:value="value"
+					:rows="3"
+					type="textarea"
+				></g-input>
+			</div>
+		</template>
+		<script>
+			export defalut {
+				data() {
+					return {
+						value: ''
+					}
+				}
+			}
+		</script>
+  </highlight-code>
+	<div slot="desc">通过<code>type</code>属性的值传入为textarea</div>
+</common-demoCode>
+
 ### 复合型输入框
 
 <p>可前置或后置元素</p>
