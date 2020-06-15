@@ -55,6 +55,7 @@ const calcTextareaHeight = (element, minRow = 1, maxRow = null) => {
     } = calculateNodeStyling(element)
     hiddenTextarea.setAttribute('style', `${contextStyle}; ${HIDDEN_STYLE}`)
     hiddenTextarea.value = element.value || element.placeholder || ''
+    console.log(hiddenTextarea.value)
     let height = hiddenTextarea.scrollHeight
     let result = {}
     if (boxSizing === 'border-box') {
@@ -63,7 +64,7 @@ const calcTextareaHeight = (element, minRow = 1, maxRow = null) => {
         height = height - paddingSizing
     }
     hiddenTextarea.value = ''
-    let singleRowHeight = hiddenTextarea.scrollHeight - paddingSizing
+    let singleRowHeight = hiddenTextarea.scrollHeight
     console.log(singleRowHeight)
     if (minRow) {
         let minHeight = singleRowHeight * minRow

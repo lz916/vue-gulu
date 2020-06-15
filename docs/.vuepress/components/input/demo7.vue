@@ -5,7 +5,7 @@
             :value="value"
             :autosize="{
                 minRows: 1,
-                maxRows: 7
+                maxRows: 6
             }"
             type="textarea"
         ></g-input>

@@ -197,3 +197,37 @@ title: input 输入框
   </highlight-code>
 	<div slot="desc">通过<code>size</code>属性来指定不同的尺寸</div>
 </common-demoCode>
+
+### Attributes
+
+| 参数             | 说明                                           | 类型           |  默认值  |
+| :--------------- | :---------------------------------------------| :------        | :------ |
+| `value`          | 绑定值                                         | String/Number  |   `-`   |
+| `type`           | 类型，可选`text`和`textarea`                    | String         |   `-`   |
+| `disabled`       | 是否禁用                                        | Bollean        | `false` |
+| `prefix-icon`    | 输入框前置icon                                  | String         |   `-`   |
+| `suffix-icon`    | 输入框后置icon                                  | String         |   `-`   |
+| `maxLength`      | 原生属性，最大输入长度                           | Number         |   `-`   |
+| `minLength`      | 原生属性，最小输入长度                           | Number         |   `-`   |
+| `size`           | 尺寸，可选`large`、`middle`、`small`            | String         |`middle` |
+| `rows`           | 行数（仅在type为textarea的时候有效）             | String         |`middle` |
+| `autosize`       | 自适应高度（仅在type为textarea的时候有效）        | Object         |   `-`   |
+
+
+### Slots
+| name             | 说明                                        
+| :--------------- | :--------------------------------------------------|
+| `prepend`          | 输入框前置内容（仅在type不为textarea的时候有效）     |
+| `append`           | 输入框后置内容（仅在type不为textarea的时候有效）     |
+
+### Events
+
+| 事件名称          | 说明                                           | 回调参数          
+| :--------------- | :---------------------------------------------| :------------|
+| `change`         | 在input输入框是去焦点或者按回车键时触发           |    Event    |
+| `input`          | 在input输入框输入时触发                         |    Event    |
+| `blur`           | 在input输入框是去焦点时触发                      |   Event     |
+| `focus`          | 在input输入框获得焦点时触发                      |    Event     |
+
+
+

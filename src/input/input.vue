@@ -20,7 +20,7 @@
                     { [`${size}-input`]: size },
                     { 'g-input-inner-disabled': disabled }
                 ]"
-                @change="$emit('change', $event)"
+                @change="handleChange"
                 @input="handleInput"
                 @focus="$emit('focus', $event)"
                 @blur="$emit('blur', $event)"
@@ -60,7 +60,7 @@ export default {
     name: 'gInput',
     data() {
         return {
-           textareaCalcStyle: {}
+            textareaCalcStyle: {}
         }
     },
     computed: {
@@ -114,27 +114,43 @@ export default {
     methods: {
         // textarea自适应高度
         resizeTextarea() {
-            console.log('textarea')
             if (this.type === 'textarea' && this.autosize) {
                 const minRows = this.autosize.minRows
                 const maxRows = this.autosize.maxRows
-                this.textareaCalcStyle = calcTextareaHeight(
+                const { height, minHeight } = calcTextareaHeight(
                     this.$refs.textarea,
                     minRows,
                     maxRows
                 )
+                this.$refs.textarea.style.height = height
+                this.$refs.textarea.style.minHeight = minHeight
+                console.log(this.$refs.textarea.style.height)
+                console.log(this.$refs.textarea.style.minHeight)
+                // this.$refs.textarea.style = {
+                //     'min-height': minHeight,
+                //     height
+                // }
+                // this.textareaCalcStyle = calcTextareaHeight(
+                //     this.$refs.textarea,
+                //     minRows,
+                //     maxRows
+                // )
             }
         },
         handleChange($event) {
             this.$emit('change', $event)
-            setTimeout(this.resizeTextarea, 1000)
+            console.log($event)
+            // $event.target.style.height = `100px`
+            // this.textareaCalcStyle = {
+            //     height: '100px'
+            // }
+            // setTimeout(this.resizeTextarea, 1000)
         },
         handleInput($event) {
-            console.log($event)
             this.$emit('input', $event)
-            // setTimeout(this.resizeTextarea, 1000)
-            
-            // this.$nextTick()
+            if (this.type === 'textarea') {
+                this.resizeTextarea()
+            }
         }
     },
     watch: {
