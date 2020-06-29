@@ -72,11 +72,14 @@ export default {
                 { 'g-input-prefix': this.prefixIcon },
                 { 'g-input-suffix': this.suffixIcon }
             ]
+        },
+        inputNativeValue() {
+            return 
         }
     },
     props: {
         type: {
-            type: String,
+            type,
             defalut: 'text' // text和 textarea
         },
         value: {
@@ -126,15 +129,6 @@ export default {
                 this.$refs.textarea.style.minHeight = minHeight
                 console.log(this.$refs.textarea.style.height)
                 console.log(this.$refs.textarea.style.minHeight)
-                // this.$refs.textarea.style = {
-                //     'min-height': minHeight,
-                //     height
-                // }
-                // this.textareaCalcStyle = calcTextareaHeight(
-                //     this.$refs.textarea,
-                //     minRows,
-                //     maxRows
-                // )
             }
         },
         handleChange($event) {

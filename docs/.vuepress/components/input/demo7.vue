@@ -2,7 +2,7 @@
     <div>
         <g-input
             placeholder="请输入内容"
-            :value="value"
+            v-model="value"
             :autosize="{
                 minRows: 1,
                 maxRows: 6
