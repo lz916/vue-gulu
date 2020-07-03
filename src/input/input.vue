@@ -13,7 +13,6 @@
                 :type="type"
                 ref="input"
                 :placeholder="placeholder"
-                :value="value"
                 :disabled="disabled"
                 v-bind="$attrs"
                 :class="[
@@ -32,7 +31,6 @@
                 ref="textarea"
                 :type="type"
                 :placeholder="placeholder"
-                :value="value"
                 :disabled="disabled"
                 :style="textareaCalcStyle"
                 v-bind="$attrs"
@@ -63,6 +61,7 @@ export default {
             textareaCalcStyle: {}
         }
     },
+    inheritAttrs: false,
     computed: {
         classes() {
             return [
@@ -74,12 +73,12 @@ export default {
             ]
         },
         inputNativeValue() {
-            return 
+            return this.value
         }
     },
     props: {
         type: {
-            type,
+            type: String,
             defalut: 'text' // text和 textarea
         },
         value: {
@@ -134,23 +133,24 @@ export default {
         handleChange($event) {
             this.$emit('change', $event)
             console.log($event)
-            // $event.target.style.height = `100px`
-            // this.textareaCalcStyle = {
-            //     height: '100px'
-            // }
-            // setTimeout(this.resizeTextarea, 1000)
         },
-        handleInput($event) {
-            this.$emit('input', $event)
+        handleInput(event) {
+            this.$emit('input', event.target.value)
             if (this.type === 'textarea') {
                 this.resizeTextarea()
             }
+        },
+        setNativeInputValue() {
+            const input = this.type === 'textarea' ? this.$refs.textarea : this.$refs.input
+            input.value = this.nativeInputValue
         }
     },
     watch: {
         value(newValue) {
-            console.log(newValue)
             this.$nextTick(this.resizeTextarea)
+        },
+        nativeInputValue() {
+            this.setNativeInputValue()
         }
     }
 }
