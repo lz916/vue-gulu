@@ -126,8 +126,6 @@ export default {
                 )
                 this.$refs.textarea.style.height = height
                 this.$refs.textarea.style.minHeight = minHeight
-                console.log(this.$refs.textarea.style.height)
-                console.log(this.$refs.textarea.style.minHeight)
             }
         },
         handleChange($event) {
@@ -147,7 +145,7 @@ export default {
     },
     watch: {
         value(newValue) {
-            this.$nextTick(this.resizeTextarea)
+            // this.$nextTick(this.resizeTextarea)
         },
         nativeInputValue() {
             this.setNativeInputValue()
