@@ -29,7 +29,11 @@ export default {
             const textColor = this.root.textColor
             const activeTextColor = this.root.activeTextColor
             return {
-                color: this.active ? activeTextColor : this.root.textColor ? textColor : '',
+                color: this.active
+                    ? activeTextColor
+                    : this.root.textColor
+                    ? textColor
+                    : '',
                 'border-bottom-color': activeTextColor ? activeTextColor : ''
             }
         }
@@ -43,13 +47,24 @@ export default {
             this.$parent.updateNamePath && this.$parent.updateNamePath()
             this.$emit('add:item', this.name)
             this.checkIsInSubNav(e)
-            if (this.$parent.$options && this.$parent.$options.name && this.$parent.$options.name === 'GSubNav' && this.$parent.isOpen) {
+            if (
+                this.$parent.$options &&
+                this.$parent.$options.name &&
+                this.$parent.$options.name === 'GSubNav' &&
+                this.root.mode === 'horizontal' &&
+                this.$parent.isOpen
+            ) {
+                console.log('关闭')
                 this.$parent.isOpen = false
             }
         },
         // 判断是不是在nav-item是不是在sub-nav里面
         checkIsInSubNav(e) {
-            if (this.$parent.$options && this.$parent.$options.name && this.$parent.$options.name === 'GSubNav') {
+            if (
+                this.$parent.$options &&
+                this.$parent.$options.name &&
+                this.$parent.$options.name === 'GSubNav'
+            ) {
                 e.target.style.borderBottom = 'none'
             }
         }
@@ -63,6 +78,7 @@ export default {
     padding: 1em 2em;
     color: $text-color-secondary;
     cursor: pointer;
+    flex-shrink: 0;
     // height: 60px;
     // line-height: 60px;
     &.active {

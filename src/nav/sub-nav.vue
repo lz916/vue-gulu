@@ -140,16 +140,16 @@ export default {
         mouseenter(el) {
             if (this.root.mode === 'horizontal') {
                 this.open()
-                console.log(el.relatedTarget)
             }
         },
         mouseleave(el) {
+            console.log(el)
+            console.log('mouseleave')
             if (el.relatedTarget && el.relatedTarget.contains(el.target)) {
                 return
             } else {
                 this.close()
             }
-            //    console.log('mouseleave')
             //    console.log(el)
         }
     }
@@ -169,6 +169,8 @@ export default {
         margin-left: 10px;
         font-size: 0.8em;
         transition: all 0.5s;
+        display: flex;
+        align-items: center;
         &.open {
             transform: rotateX(180deg);
         }
@@ -182,11 +184,15 @@ export default {
         background-color: #fff;
         box-shadow: $box-shadow-base;
         border-radius: $border-radius-base;
-        transition: all 0.3s;
+        transition: all 0.5s;
         z-index: 100;
+        padding: 0.5em 0;
         .g-nav-item {
             color: $text-color-secondary;
-            padding: 1em;
+            padding: 0.5em 1em;
+            &:hover {
+                color: $text-color;
+            }
             &.active {
                 color: $text-color;
                 &::after {

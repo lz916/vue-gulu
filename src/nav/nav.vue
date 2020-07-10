@@ -100,11 +100,13 @@ export default {
     display: flex;
     font-size: 14px;
     border-bottom: 1px solid $border-color-base;
-    padding: 0 4em;
     &-vertical {
-        width: 200px;
+        width: 240px;
         flex-direction: column;
         padding: 0;
+        border-bottom: none;
+        border-right: 1px solid $border-color-base;
+        min-height: 400px;
         .g-nav-item.active {
             border-bottom: none;
         }
