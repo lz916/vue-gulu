@@ -190,6 +190,12 @@
             <div slot="header">我是头部</div>
             <div slot="footer">我是底部</div>
         </test>
+        <div style="margin-top: 20px">
+            <g-color-picker></g-color-picker>
+        </div>
+        <div style="margin-top: 20px">
+            <g-slider></g-slider>
+        </div>
     </div>
 </template>
 

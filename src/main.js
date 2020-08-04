@@ -19,6 +19,8 @@ import Nav from './nav/nav'
 import NavItem from './nav/nav-item'
 import SubNav from './nav/sub-nav'
 import Switch from './switch/switch.vue'
+import ColorPicker from './colorPicekr/picker-dropdown.vue'
+import Slider from './slider/index'
 
 Vue.component('GIcon', Icon)
 Vue.component('GRow', Row)
@@ -39,6 +41,8 @@ Vue.component('GNav', Nav)
 Vue.component('GNavItem', NavItem)
 Vue.component('GSubNav', SubNav)
 Vue.component('GSwitch', Switch)
+Vue.component('GColorPicker', ColorPicker)
+Vue.component('GSlider', Slider)
 
 Vue.config.productionTip = false
 
