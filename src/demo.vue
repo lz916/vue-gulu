@@ -196,6 +196,9 @@
         <div style="margin-top: 20px">
             <g-slider></g-slider>
         </div>
+        <div style="margin-top: 20px">
+            <g-slider :vertical="true" :height="200"></g-slider>
+        </div>
     </div>
 </template>
 
