@@ -194,7 +194,7 @@
             <g-color-picker></g-color-picker>
         </div>
         <div style="margin-top: 20px">
-            <g-slider></g-slider>
+            <g-slider v-model="sliderValue"></g-slider>
         </div>
         <div style="margin-top: 20px">
             <g-slider :vertical="true" :height="200"></g-slider>
@@ -219,7 +219,8 @@ export default {
             direction: 'horizontal',
             activeName1: ['1'],
             navSelected: ['home'],
-            switchValue: true
+            switchValue: true,
+            sliderValue: 0
         }
     },
     components: {
