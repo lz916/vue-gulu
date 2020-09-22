@@ -12,6 +12,9 @@ import TabHead from './tabs/tab-head'
 import TabBody from './tabs/tab-body'
 import TabItem from './tabs/tab-item'
 import TabPane from './tabs/tab-pane'
+
+import Tabs1 from './tabs1/tabs'
+import TabPane1 from './tabs1/tab-pane.vue'
 import Popover from './popover/popover'
 import Collapse from './collapse/collapse'
 import CollapseItem from './collapse/collapse-item'
@@ -43,6 +46,8 @@ Vue.component('GSubNav', SubNav)
 Vue.component('GSwitch', Switch)
 Vue.component('GColorPicker', ColorPicker)
 Vue.component('GSlider', Slider)
+Vue.component('GTabs1', Tabs1)
+Vue.component('GTabPane1', TabPane1)
 
 Vue.config.productionTip = false
 
