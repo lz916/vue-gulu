@@ -1,158 +1,40 @@
 <template>
-    <div
-        class="g-sub-nav g-nav-item"
-        :class="[
-            { active },
-            { 'g-sub-nav-vertical': root.mode === 'vertical' }
-        ]"
-        :style="styleObj"
-        @mouseenter="mouseenter($event)"
-        @mouseleave="mouseleave"
-        v-click-outside="close"
-    >
-        <div class="g-sub-nav-label" @click="onClick">
-            <slot name="title"></slot>
-            <span class="g-sub-nav-icon" :class="{ open: isOpen }">
-                <g-icon icon-name="up"></g-icon>
-            </span>
-        </div>
-        <template v-if="root.mode === 'vertical'">
-            <transition
-                @enter="enter"
-                @after-enter="afterEnter"
-                @leave="leave"
-                @after-leave="afterLeave"
-            >
-                <div
-                    class="g-sub-nav-popover"
-                    v-show="isOpen"
-                    :style="popoverStyleObj"
-                >
-                    <slot></slot>
-                </div>
-            </transition>
-        </template>
-        <template v-else>
-            <div
-                class="g-sub-nav-popover"
-                v-show="isOpen"
-                :style="popoverStyleObj"
-            >
-                <slot></slot>
+    <div class="g-sub-nav">
+        <div class="g-sub-nav-title" @click="onClick">
+            <div class="g-sub-nav-label">
+                <slot name="title"></slot>
             </div>
-        </template>
+            <g-icon name="up"></g-icon>
+        </div>
+        <div class="g-sub-nav-popover" v-if="popoverVisible">
+            <slot></slot>
+        </div>
     </div>
 </template>
 
 <script>
-import ClickOutside from '../directive/click-outside'
-import gIcon from '../icon/icon'
+import GIcon from '../icon/icon'
 export default {
     name: 'GSubNav',
     data() {
         return {
-            isOpen: false
+            popoverVisible: false,
         }
-    },
-    directives: { ClickOutside },
-    inject: ['root'],
-    props: {
-        name: [String, Number],
-        required: true
     },
     components: {
-        gIcon
+        GIcon,
     },
-    computed: {
-        active() {
-            const mode = this.root.mode
-            if (mode === 'horizontal') {
-                return this.root.namesPath.indexOf(this.name) > -1
-            }
-        },
-        styleObj() {
-            const textColor = this.root.textColor
-            const activeTextColor = this.root.activeTextColor
-            return {
-                color: this.active
-                    ? activeTextColor
-                    : this.root.textColor
-                    ? textColor
-                    : '',
-                'border-bottom-color': activeTextColor ? activeTextColor : ''
-            }
-        },
-        popoverStyleObj() {
-            const textColor = this.root.textColor
-            const activeTextColor = this.root.activeTextColor
-            const backgroundColor = this.root.backgroundColor
-            return {
-                color: this.active
-                    ? activeTextColor
-                    : this.root.textColor
-                    ? textColor
-                    : '',
-                'background-color': backgroundColor ? backgroundColor : ''
-            }
-        }
-    },
-    mounted() {},
     methods: {
         open() {
-            this.isOpen = true
+            this.popoverVisible = true
         },
         close() {
-            this.isOpen = false
+            this.popoverVisible = false
         },
         onClick() {
-            this.isOpen = !this.isOpen
+            this.open()
         },
-        updateNamePath() {
-            this.root.namesPath.unshift(this.name)
-            if (this.$parent.updateNamePath) {
-                this.$parent.updateNamePath()
-            }
-        },
-        enter(el, done) {
-            let { height } = el.getBoundingClientRect()
-            el.style.height = 0
-            el.getBoundingClientRect()
-            el.style.height = `${height}px`
-            el.addEventListener('transitionend', () => {
-                done()
-            })
-        },
-        afterEnter(el) {
-            el.style.height = 'auto'
-        },
-        leave(el, done) {
-            let { height } = el.getBoundingClientRect()
-            el.style.height = `${height}px`
-            el.getBoundingClientRect()
-            el.style.height = 0
-            el.addEventListener('transitionend', () => {
-                done()
-            })
-        },
-        afterLeave(el) {
-            el.style.height = 'auto'
-        },
-        mouseenter(el) {
-            if (this.root.mode === 'horizontal') {
-                this.open()
-            }
-        },
-        mouseleave(el) {
-            console.log(el)
-            console.log('mouseleave')
-            if (el.relatedTarget && el.relatedTarget.contains(el.target)) {
-                return
-            } else {
-                this.close()
-            }
-            //    console.log(el)
-        }
-    }
+    },
 }
 </script>
 
@@ -160,64 +42,17 @@ export default {
 @import '../var.scss';
 .g-sub-nav {
     position: relative;
-    &-label {
-        display: flex;
-        align-items: center;
-    }
-    &-icon {
-        color: $text-color-secondary;
-        margin-left: 10px;
-        font-size: 0.8em;
-        transition: all 0.5s;
-        display: flex;
-        align-items: center;
-        &.open {
-            transform: rotateX(180deg);
-        }
-    }
+    padding: 0.8em 1.5em;
+    cursor: pointer;
+    font-size: 14px;
     &-popover {
         position: absolute;
         top: 100%;
         left: 0;
-        margin-top: 4px;
-        min-width: 200px;
+        padding: 1em 3em;
+        margin-top: 2px;
+        border: 1px solid $border-color-base;
         background-color: #fff;
-        box-shadow: $box-shadow-base;
-        border-radius: $border-radius-base;
-        transition: all 0.5s;
-        z-index: 100;
-        padding: 0.5em 0;
-        .g-nav-item {
-            color: $text-color-secondary;
-            padding: 0.5em 1em;
-            &:hover {
-                color: $text-color;
-            }
-            &.active {
-                color: $text-color;
-                &::after {
-                    display: none;
-                }
-            }
-        }
-        .g-sub-nav-popover {
-            position: absolute;
-            left: 100%;
-            top: 0;
-            margin-left: 2px;
-        }
-    }
-    &-vertical {
-        .g-sub-nav-label {
-            display: flex;
-            justify-content: space-between;
-        }
-        .g-sub-nav-popover {
-            position: static;
-            background: none;
-            min-width: 0;
-            box-shadow: none;
-        }
     }
 }
 </style>

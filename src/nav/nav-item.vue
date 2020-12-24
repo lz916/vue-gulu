@@ -1,9 +1,7 @@
 <template>
     <div
-        class="g-nav-item"
-        :class="{ active: active }"
-        :style="styleObj"
-        @click="onClickItem($event)"
+        :class="['g-nav-item', { 'g-nav-item-active': active }]"
+        @click="onClick"
     >
         <slot></slot>
     </div>
@@ -12,61 +10,34 @@
 <script>
 export default {
     name: 'GNavItem',
+    data() {
+        return {
+            active: false,
+        }
+    },
     inject: ['root'],
     props: {
         name: {
-            type: [String, Number],
-            required: true
-        }
-    },
-    data() {
-        return {
-            active: false
-        }
-    },
-    computed: {
-        styleObj() {
-            const textColor = this.root.textColor
-            const activeTextColor = this.root.activeTextColor
-            return {
-                color: this.active
-                    ? activeTextColor
-                    : this.root.textColor
-                    ? textColor
-                    : '',
-                'border-bottom-color': activeTextColor ? activeTextColor : ''
-            }
+           type: [String, Number],
+           required: true 
         }
     },
     created() {
-        this.root.addItems(this)
+    //    if (this.root.selected === this.name) {
+    //        this.active = true
+    //    } else {
+    //        this.active = false
+    //    }
+        this.root.addItem(this)
+        console.log(this)
     },
     methods: {
-        onClickItem(e) {
-            this.root.namesPath = []
-            this.$parent.updateNamePath && this.$parent.updateNamePath()
-            this.$emit('add:item', this.name)
-            this.checkIsInSubNav(e)
-            if (
-                this.$parent.$options &&
-                this.$parent.$options.name &&
-                this.$parent.$options.name === 'GSubNav' &&
-                this.root.mode === 'horizontal' &&
-                this.$parent.isOpen
-            ) {
-                console.log('关闭')
-                this.$parent.isOpen = false
-            }
-        },
-        // 判断是不是在nav-item是不是在sub-nav里面
-        checkIsInSubNav(e) {
-            if (
-                this.$parent.$options &&
-                this.$parent.$options.name &&
-                this.$parent.$options.name === 'GSubNav'
-            ) {
-                e.target.style.borderBottom = 'none'
-            }
+        onClick() {
+            console.log(1111)
+            console.log(this)
+            console.log(this.$emit)
+            this.$emit('updateSelected', this.name)
+            // this.$emit()
         }
     }
 }
@@ -75,23 +46,13 @@ export default {
 <style lang="scss">
 @import '../var.scss';
 .g-nav-item {
-    padding: 1em 2em;
-    color: $text-color-secondary;
+    padding: 0.8em 1.5em;
     cursor: pointer;
-    flex-shrink: 0;
-    // height: 60px;
-    // line-height: 60px;
-    &.active {
-        color: $text-color;
-        position: relative;
+    font-size: 14px;
+    // transition: all .3s;
+    &-active {
+        color: $primary-color;
         border-bottom: 2px solid $primary-color;
-        // &::after {
-        //     content: '';
-        //     position: absolute;
-        //     left: 0;
-        //     right: 0;
-        //     bottom: 0;
-        // }
     }
 }
 </style>

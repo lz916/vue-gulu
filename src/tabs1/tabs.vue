@@ -46,7 +46,6 @@ export default {
     },
     methods: {
         navClick(nav) {
-            console.log(nav)
             this.$emit('update:selected', nav.name)
             this.calcNavLinePosition()
         },
@@ -84,14 +83,14 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .g-nav {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 2px solid #ddd;
     position: relative;
 
     &-item {
         padding: 0.5em 1em;
-
+        cursor: pointer;
         &.selected {
             color: #22a4ff;
         }
@@ -101,7 +100,7 @@ export default {
         position: absolute;
         left: 0;
         top: 100%;
-        border: 2px solid #22a4ff;
+        border: 1px solid #22a4ff;
         transition: all 0.25s;
     }
 }
