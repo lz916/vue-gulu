@@ -116,6 +116,10 @@
             {{ this.activeName1 }}
         </div>
         <div style="margin-top: 20px">
+            <div>cascader组件</div>
+            <g-cascader :source="source"></g-cascader>
+        </div>
+        <div style="margin-top: 20px">
             <div>Nav导航组件</div>
             <g-nav :selected.sync="navSelected">
                 <g-nav-item name="home">首页</g-nav-item>
@@ -179,6 +183,40 @@ export default {
             switchValue: true,
             sliderValue: 10,
             selected: '1',
+            source: [
+                {
+                    name: 1,
+                    value: 1,
+                    children: [
+                        {
+                            name: 11,
+                            value: 11,
+                            children: [
+                                {
+                                    name: 111,
+                                    value: 111,
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    name: 2,
+                    value: 2,
+                    children: [
+                        {
+                            name: 22,
+                            value: 22,
+                            children: [
+                                {
+                                    name: 222,
+                                    value: 222,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
         }
     },
     components: {
