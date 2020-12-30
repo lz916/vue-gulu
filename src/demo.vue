@@ -185,15 +185,43 @@ export default {
             selected: '1',
             source: [
                 {
-                    name: 1,
+                    name: '广东',
                     value: 1,
                     children: [
                         {
-                            name: 11,
+                            name: '深圳',
                             value: 11,
                             children: [
                                 {
-                                    name: 111,
+                                    name: '南山区',
+                                    value: 111,
+                                },
+                                {
+                                    name: '宝安区',
+                                    value: 111,
+                                },
+                            ],
+                        },
+                        {
+                            name: '东莞',
+                            value: 11,
+                            children: [
+                                {
+                                    name: '松山区',
+                                    value: 111,
+                                },
+                            ],
+                        },
+                        {
+                            name: '揭阳',
+                            value: 11,
+                            children: [
+                                {
+                                    name: '揭东',
+                                    value: 111,
+                                },
+                                {
+                                    name: '揭西',
                                     value: 111,
                                 },
                             ],
@@ -201,15 +229,35 @@ export default {
                     ],
                 },
                 {
-                    name: 2,
+                    name: '湖南',
                     value: 2,
                     children: [
                         {
-                            name: 22,
+                            name: '郴州',
                             value: 22,
                             children: [
                                 {
-                                    name: 222,
+                                    name: '资兴',
+                                    value: 222,
+                                },
+                            ],
+                        },
+                        {
+                            name: '长沙',
+                            value: 22,
+                            children: [
+                                {
+                                    name: '雨花区',
+                                    value: 222,
+                                },
+                            ],
+                        },
+                        {
+                            name: '常德',
+                            value: 22,
+                            children: [
+                                {
+                                    name: '澧县',
                                     value: 222,
                                 },
                             ],
