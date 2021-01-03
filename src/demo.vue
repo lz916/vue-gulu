@@ -117,7 +117,7 @@
         </div>
         <div style="margin-top: 20px">
             <div>cascader组件</div>
-            <g-cascader :source="source"></g-cascader>
+            <g-cascader :source="source" :selected.sync="selected1"></g-cascader>
         </div>
         <div style="margin-top: 20px">
             <div>Nav导航组件</div>
@@ -183,6 +183,7 @@ export default {
             switchValue: true,
             sliderValue: 10,
             selected: '1',
+            selected1: [],
             source: [
                 {
                     name: '广东',
