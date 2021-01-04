@@ -117,7 +117,11 @@
         </div>
         <div style="margin-top: 20px">
             <div>cascader组件</div>
-            <g-cascader :source="source" :selected.sync="selected1"></g-cascader>
+            <g-cascader
+                :source="source"
+                :selected.sync="selected1"
+                :loadData="loadData"
+            ></g-cascader>
         </div>
         <div style="margin-top: 20px">
             <div>Nav导航组件</div>
@@ -168,6 +172,7 @@ import Vue from 'vue'
 // import GButton from './button'
 import toast from './plugin.js'
 import test from './test'
+import db from '../tests/fixtures/db.js'
 Vue.use(toast)
 export default {
     name: 'Demo',
@@ -184,92 +189,17 @@ export default {
             sliderValue: 10,
             selected: '1',
             selected1: [],
-            source: [
-                {
-                    name: '广东',
-                    value: 1,
-                    children: [
-                        {
-                            name: '深圳',
-                            value: 11,
-                            children: [
-                                {
-                                    name: '南山区',
-                                    value: 111,
-                                },
-                                {
-                                    name: '宝安区',
-                                    value: 111,
-                                },
-                            ],
-                        },
-                        {
-                            name: '东莞',
-                            value: 11,
-                            children: [
-                                {
-                                    name: '松山区',
-                                    value: 111,
-                                },
-                            ],
-                        },
-                        {
-                            name: '揭阳',
-                            value: 11,
-                            children: [
-                                {
-                                    name: '揭东',
-                                    value: 111,
-                                },
-                                {
-                                    name: '揭西',
-                                    value: 111,
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: '湖南',
-                    value: 2,
-                    children: [
-                        {
-                            name: '郴州',
-                            value: 22,
-                            children: [
-                                {
-                                    name: '资兴',
-                                    value: 222,
-                                },
-                            ],
-                        },
-                        {
-                            name: '长沙',
-                            value: 22,
-                            children: [
-                                {
-                                    name: '雨花区',
-                                    value: 222,
-                                },
-                            ],
-                        },
-                        {
-                            name: '常德',
-                            value: 22,
-                            children: [
-                                {
-                                    name: '澧县',
-                                    value: 222,
-                                },
-                            ],
-                        },
-                    ],
-                },
-            ],
+            source: [],
         }
     },
     components: {
         test,
+    },
+    created() {
+        const result = db.filter((item) => {
+            return item.parent_id === 0
+        })
+        this.source = result
     },
     methods: {
         showToast() {
@@ -288,8 +218,26 @@ export default {
                 }
             )
         },
+        ajax(parentId) {
+            new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const result = db.filter((item) => {
+                        return item.parent_id === parentId
+                    })
+                    console.log(result)
+                    return result
+                }, 100)
+            })
+        },
         change(direction) {
             this.direction = direction
+        },
+        loadData(node, callback) {
+            console.log('执行loadData')
+            console.log(`node:${node}`)
+            console.log(`parentId:${node.parent_id}`)
+            const parentId = node && node.id ? node.id : 0
+            this.ajax(parentId)
         },
     },
 }
