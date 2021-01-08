@@ -1,5 +1,5 @@
 <template>
-    <div class="g-cascader-item">
+    <div class="g-cascader-item" :style="{ height: popoverHeight }">
         <div class="left">
             <div
                 class="col"
@@ -13,11 +13,10 @@
                 >
                     {{ item.name }}
                 </div>
-                <span
-                    v-if="item.children && item.children.length > 0"
-                    class="icon"
-                    >></span
-                >
+                <span v-if="!item.isLeaf" class="icon">
+                    <g-icon iconName="right" v-if="!item.isLoading"></g-icon>
+                    <g-icon iconName="loading" v-else></g-icon>
+                </span>
             </div>
         </div>
         <div class="right" v-if="rightItems">
@@ -32,9 +31,13 @@
 </template>
 
 <script>
+import gIcon from '../icon/icon'
 const cascaderItem = {
     name: 'cascader-item',
-    components: cascaderItem,
+    components: {
+        cascaderItem,
+        gIcon,
+    },
     props: {
         items: {
             type: Array,
@@ -52,6 +55,7 @@ const cascaderItem = {
             type: Number,
             defalut: 0,
         },
+        popoverHeight: String,
     },
     data() {
         return {
@@ -76,16 +80,12 @@ const cascaderItem = {
     },
     methods: {
         onClick(item, index) {
-            console.log(index)
             const copySelected = JSON.parse(JSON.stringify(this.selected))
             this.$set(copySelected, this.level, item)
-            // this.selectedIndexArr[this.level] = index
             copySelected.splice(this.level + 1)
             this.$emit('update:selected', copySelected)
         },
         onUpdateSelected(newSelected) {
-            console.log(122)
-            console.log(newSelected)
             this.$emit('update:selected', newSelected)
         },
     },
@@ -98,6 +98,7 @@ export default cascaderItem
 .g-cascader-item {
     display: flex;
     .left {
+        overflow: auto;
         .col {
             min-width: 140px;
             display: flex;
@@ -114,6 +115,7 @@ export default cascaderItem
         }
     }
     .right {
+        overflow: auto;
         border-left: 1px solid $border-color-base;
     }
 }

@@ -121,6 +121,7 @@
                 :source="source"
                 :selected.sync="selected1"
                 :loadData="loadData"
+                popoverHeight="200px"
             ></g-cascader>
         </div>
         <div style="margin-top: 20px">
@@ -164,6 +165,42 @@
                 <g-tab-pane1 title="标题2" name="2">内容2</g-tab-pane1>
             </g-tabs1>
         </div>
+        <div style="margin-top: 20px">
+            <g-carousel :active-index.sync="activeIndex">
+                <g-carousel-item name="1">
+                    <img
+                        src="https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2533215658,320580699&fm=26&gp=0.jpg"
+                    />
+                </g-carousel-item>
+                <g-carousel-item name="2">
+                    <img
+                        src="https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2462008823,1080205429&fm=26&gp=0.jpg"
+                    />
+                </g-carousel-item>
+                <g-carousel-item name="3">
+                    <img
+                        src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3075392904,3612057931&fm=26&gp=0.jpg"
+                    />
+                </g-carousel-item>
+            </g-carousel>
+            <g-carousel :active-index.sync="activeIndex" direction="vertical">
+                <g-carousel-item name="1">
+                    <img
+                        src="https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2533215658,320580699&fm=26&gp=0.jpg"
+                    />
+                </g-carousel-item>
+                <g-carousel-item name="2">
+                    <img
+                        src="https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2462008823,1080205429&fm=26&gp=0.jpg"
+                    />
+                </g-carousel-item>
+                <g-carousel-item name="3">
+                    <img
+                        src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3075392904,3612057931&fm=26&gp=0.jpg"
+                    />
+                </g-carousel-item>
+            </g-carousel>
+        </div>
     </div>
 </template>
 
@@ -190,16 +227,18 @@ export default {
             selected: '1',
             selected1: [],
             source: [],
+            activeIndex: 1,
         }
     },
     components: {
         test,
     },
     created() {
-        const result = db.filter((item) => {
-            return item.parent_id === 0
+        this.ajax(0).then((result) => {
+            console.log('created')
+            console.log(result)
+            this.source = result
         })
-        this.source = result
     },
     methods: {
         showToast() {
@@ -218,14 +257,24 @@ export default {
                 }
             )
         },
-        ajax(parentId) {
-            new Promise((resolve, reject) => {
+        ajax(parentId, callback) {
+            return new Promise((resolve, reject) => {
                 setTimeout(() => {
                     const result = db.filter((item) => {
                         return item.parent_id === parentId
                     })
-                    console.log(result)
-                    return result
+                    result.forEach((item) => {
+                        const filterArr = db.filter((node) => {
+                            return node.parent_id === item.id
+                        })
+                        if (filterArr.length > 0) {
+                            item.isLeaf = false
+                        } else {
+                            item.isLeaf = true
+                        }
+                    })
+                    resolve(result)
+                    // return result
                 }, 100)
             })
         },
@@ -233,11 +282,12 @@ export default {
             this.direction = direction
         },
         loadData(node, callback) {
-            console.log('执行loadData')
-            console.log(`node:${node}`)
-            console.log(`parentId:${node.parent_id}`)
             const parentId = node && node.id ? node.id : 0
-            this.ajax(parentId)
+            this.ajax(parentId).then((result) => {
+                this.$set(node, 'isLoading', false)
+                console.log(node.isLoading)
+                callback(result)
+            })
         },
     },
 }

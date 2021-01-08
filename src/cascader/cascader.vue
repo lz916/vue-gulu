@@ -1,21 +1,22 @@
 <template>
-    <div class="g-cascader">
-        <div class="trigger" @click="popoverVisible = !popoverVisible">
+    <div class="g-cascader" ref="cascader">
+        <div class="trigger" @click="toggle">
             {{ result }}
         </div>
         <div class="popover" v-if="popoverVisible">
             <template>
                 <g-cascader-items
                     :items="source"
-                    @close="close"
                     :selected="selected"
                     :level="0"
+                    :popoverHeight="popoverHeight"
+                    @close="close"
                     @update:selected="onUpdateSelected"
                 ></g-cascader-items>
             </template>
         </div>
     </div>
-</template>s
+</template>
 
 <script>
 import GCascaderItems from './cascader-items'
@@ -27,19 +28,24 @@ export default {
         }
     },
     props: {
-        source: {
+        source: { // 数据源
             type: Array,
             default() {
                 return []
             },
         },
-        selected: {
+        selected: { // 已选中的数据
             type: Array,
             defalut() {
                 return []
             },
         },
-        loadData: Function,
+        popoverHeight: String,
+        loadData: Function, // 动态加载数据的方法
+        lazy: { // 是否需要动态加载
+            type: Boolean,
+            default: false
+        }
     },
     computed: {
         result() {
@@ -50,15 +56,36 @@ export default {
         GCascaderItems,
     },
     methods: {
+        x(e) {
+            const { cascader } = this.$refs
+            if (e.target === cascader || cascader.contains(e.target)) {
+                return
+            }
+            this.close()
+        },
+        open() {
+            this.popoverVisible = true
+            document.addEventListener('click', this.x)
+        },
         close() {
-            console.log('执行close')
             this.popoverVisible = false
+            document.removeEventListener('click', this.x)
+        },
+        toggle() {
+            if (this.popoverVisible) {
+                this.close()
+            } else {
+                this.open()
+            }
         },
         onUpdateSelected(newSelected) {
             this.$emit('update:selected', newSelected)
             const lastItem = newSelected[newSelected.length - 1]
-            console.log(lastItem)
-            this.loadData(lastItem)
+            const updateSource = (result) => {
+                this.$set(lastItem, 'children', result)
+                this.$set(lastItem, 'isLoading', true)
+            }
+            this.loadData(lastItem, updateSource)
         },
     },
 }
@@ -69,9 +96,13 @@ export default {
 .g-cascader {
     position: relative;
     .trigger {
-        width: 100px;
-        height: 40px;
-        border: 1px solid red;
+        display: inline-block;
+        min-width: 120px;
+        height: 36px;
+        border: 1px solid $border-color-base;
+        border-radius: 4px;
+        line-height: 36px;
+        padding: 0 8px;
     }
     .popover {
         position: absolute;

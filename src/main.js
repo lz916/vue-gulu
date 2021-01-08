@@ -24,6 +24,8 @@ import SubNav from './nav/sub-nav'
 import Switch from './switch/switch.vue'
 import ColorPicker from './colorPicekr/picker-dropdown.vue'
 import Slider from './slider/index'
+import Carousel from './carousel/carousel.vue'
+import CarouselItem from './carousel/carousel-item.vue'
 
 Vue.component('GIcon', Icon)
 Vue.component('GRow', Row)
@@ -48,6 +50,8 @@ Vue.component('GColorPicker', ColorPicker)
 Vue.component('GSlider', Slider)
 Vue.component('GTabs1', Tabs1)
 Vue.component('GTabPane1', TabPane1)
+Vue.component('GCarousel', Carousel)
+Vue.component('GCarouselItem', CarouselItem)
 
 Vue.config.productionTip = false
 
