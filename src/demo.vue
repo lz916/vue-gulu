@@ -201,6 +201,9 @@
                 </g-carousel-item>
             </g-carousel>
         </div>
+        <div style="margin-top: 20px">
+            <g-pagination :totalPage="20" :current-page.sync="currentPage"></g-pagination>
+        </div>
     </div>
 </template>
 
@@ -228,6 +231,7 @@ export default {
             selected1: [],
             source: [],
             activeIndex: 1,
+            currentPage: 5
         }
     },
     components: {

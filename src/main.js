@@ -26,6 +26,7 @@ import ColorPicker from './colorPicekr/picker-dropdown.vue'
 import Slider from './slider/index'
 import Carousel from './carousel/carousel.vue'
 import CarouselItem from './carousel/carousel-item.vue'
+import Pagination from './pagination/pagination.vue'
 
 Vue.component('GIcon', Icon)
 Vue.component('GRow', Row)
@@ -52,6 +53,7 @@ Vue.component('GTabs1', Tabs1)
 Vue.component('GTabPane1', TabPane1)
 Vue.component('GCarousel', Carousel)
 Vue.component('GCarouselItem', CarouselItem)
+Vue.component('GPagination', Pagination)
 
 Vue.config.productionTip = false
 
